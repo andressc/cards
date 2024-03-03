@@ -1,0 +1,114 @@
+.typography {
+}
+
+.dark {
+  color: var(--color-light-100);
+}
+
+.light {
+  color: var(--color-dark-900);
+}
+
+.body1 {
+  font-size: var(--font-size-m);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-m);
+}
+
+.body2 {
+  font-size: var(--font-size-s);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-m);
+}
+
+.caption {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-s);
+}
+
+.h1 {
+  font-size: var(--font-size-xxl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-l);
+}
+
+.h2 {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-l);
+}
+
+.h3 {
+  font-size: var(--font-size-l);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-m);
+}
+
+.h4 {
+  font-size: var(--font-size-m);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-m);
+}
+
+.link1 .link2 {
+  &:visited {
+    color: var(--color-info-500);
+  }
+
+  &:active {
+    color: var(--color-info-500);
+  }
+}
+
+.link1 {
+  cursor: pointer;
+
+  font-size: var(--font-size-s);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-m);
+  text-decoration: underline;
+
+  &:visited {
+    color: var(--color-info-500);
+  }
+
+  &:active {
+    color: var(--color-info-500);
+  }
+}
+
+.link2 {
+  cursor: pointer;
+
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-s);
+  text-decoration: underline;
+
+  &:visited {
+    color: var(--color-info-500);
+  }
+
+  &:active {
+    color: var(--color-info-500);
+  }
+}
+
+.overline {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-s);
+}
+
+.subtitle1 {
+  font-size: var(--font-size-m);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-m);
+}
+
+.subtitle2 {
+  font-size: var(--font-size-s);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-m);
+}
