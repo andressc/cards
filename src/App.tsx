@@ -1,4 +1,6 @@
 function App() {
+  const as = ''
+
   return <div>Hello</div>
 }
 
