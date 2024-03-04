@@ -1,0 +1,64 @@
+.textFieldContainer {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-m);
+}
+
+.textFieldContainer input {
+  all: unset;
+
+  height: 36px;
+  padding: 0 12px;
+
+  font-size: var(--font-size-m);
+  color: var(--color-dark-100);
+
+  background-color: var(--color-dark-900);
+  border: 1px solid var(--color-dark-300);
+  border-radius: 2px;
+  outline: none;
+
+  transition: 0.2s;
+
+  &:disabled {
+    color: var(--color-dark-300);
+  }
+
+  &:hover:not(:disabled) {
+    color: var(--color-dark-100);
+    background-color: var(--color-dark-700);
+    border-color: var(--color-dark-100);
+  }
+
+  &:focus:enabled:not(.error) {
+    border-color: var(--color-info-700);
+  }
+
+  &:active:enabled:not(.error) {
+    color: var(--color-light-100);
+    border-color: var(--color-light-100);
+  }
+
+  &.error {
+    color: var(--color-danger-300);
+    border-color: var(--color-danger-300);
+  }
+}
+
+.error {
+  font-size: var(--font-size-xs);
+  color: var(--color-danger-300);
+}
+
+.label {
+  font-size: var(--font-size-s);
+  color: var(--color-dark-100);
+}
+
+.disabled {
+  color: var(--color-dark-300);
+}

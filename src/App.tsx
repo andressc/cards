@@ -1,10 +1,19 @@
-import { Typography } from '@/components/ui/typography'
+import { ChangeEvent, useState } from 'react'
+
+import { Card } from '@/components/ui/card'
+import { TextField } from '@/components/ui/textField'
 
 function App() {
+  const [value, setValue] = useState('')
+
+  const setValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setValue(e.currentTarget.value)
+  }
+
   return (
-    <Typography as={'a'} href={'https://ya.ru'} variant={'link1'}>
-      erferer
-    </Typography>
+    <Card>
+      <TextField onChange={setValueHandler} value={value} />
+    </Card>
   )
 }
 

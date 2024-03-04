@@ -11,7 +11,8 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-const children = 'Carosserie Test Zürich Stauffacherstrasse 31 8004 Zürich, ZH, CH'
+const children =
+  'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero odio sint temporibus tenetur, voluptatem voluptates?'
 
 export const h1: Story = {
   args: {
@@ -80,7 +81,7 @@ export const link2: Story = {
   },
 }
 
-export const overline: Story = {
+export const Overline: Story = {
   args: {
     children: children,
     variant: 'overline',
