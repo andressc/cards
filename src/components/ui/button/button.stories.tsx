@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import { CheckBoxSelected } from '@/assets/icons/components/checkBoxSelected'
+
 import { Button } from './'
 
 const meta = {
@@ -33,10 +35,18 @@ export const Secondary: Story = {
   },
 }
 
+export const Disabled: Story = {
+  args: {
+    children: 'Disabled Button',
+    disabled: true,
+    href: 'https://google.com',
+    variant: 'primary',
+  },
+}
+
 export const FullWidth: Story = {
   args: {
     children: 'Full Width Primary Button',
-    disabled: false,
     fullWidth: true,
     variant: 'primary',
   },
@@ -47,6 +57,15 @@ export const AsLink: Story = {
     as: 'a',
     children: 'Link that looks like a button',
     href: 'https://google.com',
+    variant: 'primary',
+  },
+}
+
+export const Icon: Story = {
+  args: {
+    children: 'Icon Button',
+    disabled: false,
+    icon: <CheckBoxSelected />,
     variant: 'primary',
   },
 }

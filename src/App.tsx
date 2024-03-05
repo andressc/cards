@@ -12,7 +12,13 @@ function App() {
 
   return (
     <Card>
-      <TextField onChange={setValueHandler} value={value} />
+      <TextField
+        label={'label'}
+        onChange={setValueHandler}
+        onClearClick={() => setValue('')}
+        search
+        value={value}
+      />
     </Card>
   )
 }

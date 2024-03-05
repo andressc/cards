@@ -17,6 +17,9 @@ dependencies:
   classnames:
     specifier: ^2.5.1
     version: 2.5.1
+  clipboard-copy:
+    specifier: ^4.0.1
+    version: 4.0.1
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -5099,6 +5102,10 @@ packages:
     optionalDependencies:
       '@colors/colors': 1.5.0
     dev: true
+
+  /clipboard-copy@4.0.1:
+    resolution: {integrity: sha512-wOlqdqziE/NNTUJsfSgXmBMIrYmfd5V0HCGsR8uAKHcg+h9NENWINcfRjtWGU77wDHC8B8ijV4hMTGYbrKovng==}
+    dev: false
 
   /clone-deep@4.0.1:
     resolution: {integrity: sha512-neHB9xuzh/wk0dIHweyAXv2aPGZIVk3pLMe+/RNzINf17fe0OG96QroktYAUm7SM1PBnzTabaLboqqxDyMU+SQ==}

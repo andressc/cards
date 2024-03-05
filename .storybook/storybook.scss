@@ -1,0 +1,112 @@
+body {
+  background-color: black !important;
+}
+
+.sb-preparing-story,
+.sb-preparing-docs {
+  background-color: black !important;
+}
+
+.sbdocs-wrapper {
+  background-color: black !important;
+}
+
+/* Изменение цвета фона блоков */
+.sbdocs-wrapper .sbdocs {
+  background-color: black !important;
+}
+
+/* Изменение цвета текста в блоках */
+
+/* .sbdocs-wrapper .sbdocs * {
+  color: green !important;
+} */
+
+.sb-anchor h3:first-of-type {
+  color: white !important;
+}
+
+.sbdocs-title {
+  color: white !important;
+}
+
+#stories {
+  color: white !important;
+}
+
+.docblock-code-toggle {
+  color: white !important;
+}
+
+.sbdocs-wrapper .docblock-code-toggle {
+  background-color: #1f1f1f !important;
+}
+
+/* Изменение цвета фона таблицы управления */
+.docblock-argstable td {
+  background-color: #1c1c1c !important;
+}
+
+.docblock-argstable td button {
+  box-shadow: none;
+}
+
+.docblock-argstable th {
+  color: white !important;
+  background-color: #111 !important;
+}
+
+/* Изменение цвета текста в таблице управления */
+.sbdocs-wrapper .docblock-argstable-body * {
+  color: white !important;
+}
+
+.sb-anchor div {
+  background-color: #111 !important;
+}
+
+.docblock-argstable button {
+  background-color: #111 !important;
+}
+
+.docblock-argstable td span {
+  padding: 5px;
+  background-color: #1c1c1c !important;
+  border: none;
+}
+
+.docblock-argstable td label {
+  background-color: #1c1c1c !important;
+}
+
+.docblock-argstable td input[type='number'] {
+  background-color: #1c1c1c !important;
+}
+
+#control-color {
+  background-color: #1c1c1c !important;
+}
+
+.docblock-argstable textarea {
+  background-color: #1c1c1c !important;
+}
+
+/* Изменение цвета фона скелета */
+.sbdocs-wrapper .sb-skeleton {
+  background-color: black !important;
+}
+
+.sb-previewBlock {
+  background: #1c1c1c !important;
+}
+
+.sb-argstableBlock-body td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  vertical-align: top;
+  background: #1c1c1c !important;
+}
+
+.sb-argstableBlock-body tr:not(:first-child) {
+  background: #1c1c1c !important;
+}
