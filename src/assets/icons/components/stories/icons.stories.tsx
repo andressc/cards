@@ -13,6 +13,7 @@ import BookmarkIcon from '@/assets/icons/components/BookmarkIcon'
 import BookmarkOutlinedIcon from '@/assets/icons/components/BookmarkOutlinedIcon'
 import CalendarIcon from '@/assets/icons/components/CalendarIcon'
 import CalendarOutlinedIcon from '@/assets/icons/components/CalendarOutlinedIcon'
+import CheckboxCheckedIcon from '@/assets/icons/components/CheckboxCheckedIcon'
 import CloseOutlinedIcon from '@/assets/icons/components/CloseOutlinedIcon'
 import ColorPaletteOutlinedIcon from '@/assets/icons/components/ColorPaletteOutlinedIcon'
 import CopyIcon from '@/assets/icons/components/CopyIcon'
@@ -90,7 +91,7 @@ type IconItemProps = {
   component: ElementType
 }
 
-function getComponentName(Component: React.ElementType): string {
+function getComponentName(Component: ElementType): string {
   if (typeof Component === 'string') {
     return Component
   }
@@ -119,7 +120,7 @@ const IconItem = (props: IconItemProps) => {
 
   return (
     <div className={s.iconContainer} onClick={handleCopyClick}>
-      <Component size={100} />
+      <Component size={60} />
       {alert && <span className={s.alert}>Сopied</span>}
     </div>
   )
@@ -137,6 +138,7 @@ const iconList = [
   BookmarkOutlinedIcon,
   CalendarIcon,
   CalendarOutlinedIcon,
+  CheckboxCheckedIcon,
   CloseOutlinedIcon,
   ColorPaletteOutlinedIcon,
   CopyIcon,

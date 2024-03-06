@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { CheckBoxSelected } from '@/assets/icons/components/checkBoxSelected'
+import EmailOutlinedIcon from '@/assets/icons/components/EmailOutlinedIcon'
 
 import { Button } from './'
 
@@ -40,6 +40,7 @@ export const Disabled: Story = {
     children: 'Disabled Button',
     disabled: true,
     href: 'https://google.com',
+    icon: <EmailOutlinedIcon />,
     variant: 'primary',
   },
 }
@@ -65,7 +66,7 @@ export const Icon: Story = {
   args: {
     children: 'Icon Button',
     disabled: false,
-    icon: <CheckBoxSelected />,
+    icon: <EmailOutlinedIcon />,
     variant: 'primary',
   },
 }

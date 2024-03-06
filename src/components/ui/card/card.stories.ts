@@ -14,7 +14,7 @@ type Story = StoryObj<typeof meta>
 const children =
   'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero odio sint temporibus tenetur, voluptatem voluptates?'
 
-export const Standart: Story = {
+export const Default: Story = {
   args: {
     children: children,
   },

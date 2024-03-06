@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { CheckBoxSelected } from '@/assets/icons/components/checkBoxSelected'
+import MicOutlinedIcon from '@/assets/icons/components/MicOutlinedIcon'
+import TrashOutlinedIcon from '@/assets/icons/components/TrashOutlinedIcon'
 
 import { TextField } from './'
 
@@ -32,17 +33,19 @@ export const Error: Story = {
 export const Diasbled: Story = {
   args: {
     disabled: true,
+    endIcon: <MicOutlinedIcon size={20} />,
     label: 'label',
     placeholder: 'efef',
+    startIcon: <TrashOutlinedIcon size={20} />,
     value: 'value',
   },
 }
 
 export const Icon: Story = {
   args: {
-    endIcon: <CheckBoxSelected />,
+    endIcon: <MicOutlinedIcon size={20} />,
     label: 'label',
-    startIcon: <CheckBoxSelected />,
+    startIcon: <TrashOutlinedIcon size={20} />,
     value: 'value',
   },
 }

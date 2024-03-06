@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-import { CheckBoxSelected } from '@/assets/icons/components/checkBoxSelected'
+import CheckboxCheckedIcon from '@/assets/icons/components/CheckboxCheckedIcon'
 import * as CheckboxRadix from '@radix-ui/react-checkbox'
 import * as LabelRadix from '@radix-ui/react-label'
 import cn from 'classnames'
@@ -40,7 +40,7 @@ export const Checkbox = ({
           >
             <CheckboxRadix.Indicator asChild className={s.checkboxIndicator}>
               <div className={s.checkboxIcon}>
-                <CheckBoxSelected />
+                <CheckboxCheckedIcon />
               </div>
             </CheckboxRadix.Indicator>
           </CheckboxRadix.Root>
