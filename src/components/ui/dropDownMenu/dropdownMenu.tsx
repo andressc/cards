@@ -6,7 +6,7 @@ import MenuOutlinedIcon from '@/assets/icons/components/MenuOutlinedIcon'
 import MoreHorizontalOutlinedIcon from '@/assets/icons/components/MoreHorizontalOutlinedIcon'
 import * as DropdownMenuRadix from '@radix-ui/react-dropdown-menu'
 
-import s from './dropDownMenu.module.scss'
+import s from './dropdownMenu.module.scss'
 
 export const DropdownMenu = () => {
   const [bookmarksChecked, setBookmarksChecked] = React.useState(true)
