@@ -4,6 +4,7 @@ import PersonIcon from '@/assets/icons/components/PersonIcon'
 import { Card } from '@/components/ui/card'
 import { Checkbox } from '@/components/ui/checkbox'
 import { RadioGroup } from '@/components/ui/radioGroup'
+import { Select } from '@/components/ui/select'
 import { Slider } from '@/components/ui/slider'
 import { TextField } from '@/components/ui/textField'
 
@@ -44,6 +45,42 @@ function App() {
     },
   ]
 
+  const selectItems = [
+    {
+      label: 'select1',
+      value: 'select1',
+    },
+    {
+      label: 'select2',
+      value: 'select2',
+    },
+    {
+      disabled: true,
+      label: 'select3',
+      value: 'select3',
+    },
+    {
+      label: 'select4',
+      value: 'select4',
+    },
+    {
+      label: 'select5',
+      value: 'select5',
+    },
+    {
+      label: 'select6',
+      value: 'select6',
+    },
+    {
+      label: 'select7',
+      value: 'select7',
+    },
+    {
+      label: 'select8',
+      value: 'select8',
+    },
+  ]
+
   return (
     <>
       <Card>
@@ -59,13 +96,19 @@ function App() {
         />
         <Checkbox checked={checked} label={'QWddqwd'} onChange={onCheckedHandler} />
         <Slider onValueChange={setValuesHandler} value={values} />
+        <RadioGroup
+          defaultValue={'RadioGroupValue3'}
+          disabled
+          onValueChange={onValueChange}
+          options={options}
+        />
+        <Select
+          label={'Select-box'}
+          onValueChange={() => {}}
+          placeholder={'dwdweefdwef'}
+          selectItems={selectItems}
+        />
       </Card>
-      <RadioGroup
-        defaultValue={'RadioGroupValue3'}
-        disabled
-        onValueChange={onValueChange}
-        options={options}
-      />
     </>
   )
 }

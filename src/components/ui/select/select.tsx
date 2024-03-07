@@ -1,74 +1,83 @@
 import ArrowIosDownOutlinedIcon from '@/assets/icons/components/ArrowIosDownOutlinedIcon'
-import ArrowIosUpOutlinedIcon from '@/assets/icons/components/ArrowIosUpOutlinedIcon'
-import CheckboxCheckedIcon from '@/assets/icons/components/CheckboxCheckedIcon'
+import { Typography } from '@/components/ui/typography'
 import * as SelectRadix from '@radix-ui/react-select'
-import cn from 'classnames'
 
 import s from './select.module.scss'
 
-export type SelectProps = {}
-
-export const Select = ({}: SelectProps) => (
-  <SelectRadix.Root>
-    <SelectRadix.Trigger aria-label={'Food'} className={s.SelectTrigger}>
-      <SelectRadix.Value placeholder={'Select a fruit…'} />
-      <SelectRadix.Icon className={s.SelectIcon}>
-        <ArrowIosDownOutlinedIcon />
-      </SelectRadix.Icon>
-    </SelectRadix.Trigger>
-    <SelectRadix.Portal>
-      <SelectRadix.Content className={s.SelectContent}>
-        <SelectRadix.ScrollUpButton className={s.SelectScrollButton}>
-          <ArrowIosUpOutlinedIcon />
-        </SelectRadix.ScrollUpButton>
-        <SelectRadix.Viewport className={s.SelectViewport}>
-          <SelectRadix.Group>
-            <SelectRadix.Label className={s.SelectLabel}>Fruits</SelectRadix.Label>
-            <SelectItem value={'apple'}>Apple</SelectItem>
-            <SelectItem value={'banana'}>Banana</SelectItem>
-            <SelectItem value={'blueberry'}>Blueberry</SelectItem>
-            <SelectItem value={'grapes'}>Grapes</SelectItem>
-            <SelectItem value={'pineapple'}>Pineapple</SelectItem>
-          </SelectRadix.Group>
-
-          <SelectRadix.Separator className={s.SelectSeparator} />
-
-          <SelectRadix.Group>
-            <SelectRadix.Label className={s.SelectLabel}>Vegetables</SelectRadix.Label>
-            <SelectItem value={'aubergine'}>Aubergine</SelectItem>
-            <SelectItem value={'broccoli'}>Broccoli</SelectItem>
-            <SelectItem disabled value={'carrot'}>
-              Carrot
-            </SelectItem>
-            <SelectItem value={'courgette'}>Courgette</SelectItem>
-            <SelectItem value={'leek'}>Leek</SelectItem>
-          </SelectRadix.Group>
-
-          <SelectRadix.Separator className={s.SelectSeparator} />
-
-          <SelectRadix.Group>
-            <SelectRadix.Label className={s.SelectLabel}>Meat</SelectRadix.Label>
-            <SelectItem value={'beef'}>Beef</SelectItem>
-            <SelectItem value={'chicken'}>Chicken</SelectItem>
-            <SelectItem value={'lamb'}>Lamb</SelectItem>
-            <SelectItem value={'pork'}>Pork</SelectItem>
-          </SelectRadix.Group>
-        </SelectRadix.Viewport>
-        <SelectRadix.ScrollDownButton className={s.SelectScrollButton}>
-          <ArrowIosDownOutlinedIcon />
-        </SelectRadix.ScrollDownButton>
-      </SelectRadix.Content>
-    </SelectRadix.Portal>
-  </SelectRadix.Root>
-)
-
-const SelectItem = ({ children, className, ...props }: any) => {
-  return (
-    <SelectRadix.Item className={cn(s.SelectItem, className)} {...props}>
-      <SelectRadix.ItemText>{children}</SelectRadix.ItemText>
-      <SelectRadix.ItemIndicator className={'SelectItemIndicator'}>
-        <CheckboxCheckedIcon />
-      </SelectRadix.ItemIndicator>
-    </SelectRadix.Item>
-  )
+type SelectValue = {
+  disabled?: boolean
+  label: string
+  value: string
 }
+
+export type SelectProps = {
+  defaultOpen?: boolean
+  defaultValue?: string
+  disabled?: boolean
+  label?: string
+  name?: string
+  onValueChange: (value: string) => void
+  placeholder?: string
+  selectItems: SelectValue[]
+  value?: string
+}
+
+export const Select = ({
+  defaultOpen,
+  defaultValue,
+  disabled,
+  label,
+  name,
+  onValueChange,
+  placeholder,
+  selectItems,
+  value,
+}: SelectProps) => (
+  <div className={s.SelectContainer}>
+    <SelectRadix.Root
+      defaultOpen={defaultOpen}
+      defaultValue={defaultValue}
+      disabled={disabled}
+      name={name}
+      onValueChange={onValueChange}
+      value={value}
+    >
+      <Typography className={s.SelectLabel} data-disabled={disabled} variant={'body2'}>
+        {label}
+      </Typography>
+      <SelectRadix.Trigger className={s.SelectTrigger}>
+        <Typography variant={'body1'}>
+          <SelectRadix.Value placeholder={placeholder} />
+        </Typography>
+        <SelectRadix.Icon className={s.SelectIcon}>
+          <ArrowIosDownOutlinedIcon size={16} />
+        </SelectRadix.Icon>
+      </SelectRadix.Trigger>
+      <SelectRadix.Portal>
+        <SelectRadix.Content
+          avoidCollisions={false}
+          className={s.SelectContent}
+          position={'popper'}
+          side={'bottom'}
+        >
+          <SelectRadix.Viewport>
+            <SelectRadix.Group>
+              {selectItems.map(si => (
+                <SelectRadix.Item
+                  className={s.SelectItem}
+                  disabled={si.disabled}
+                  key={si.value}
+                  value={si.value}
+                >
+                  <SelectRadix.ItemText>
+                    <Typography variant={'body1'}>{si.label}</Typography>
+                  </SelectRadix.ItemText>
+                </SelectRadix.Item>
+              ))}
+            </SelectRadix.Group>
+          </SelectRadix.Viewport>
+        </SelectRadix.Content>
+      </SelectRadix.Portal>
+    </SelectRadix.Root>
+  </div>
+)
