@@ -1,10 +1,10 @@
-.SliderContainer {
+.sliderContainer {
   display: flex;
   gap: 12px;
   align-items: center;
 }
 
-.SliderNumber {
+.sliderNumber {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,7 +16,7 @@
   border-radius: 2px;
 }
 
-.SliderRoot {
+.sliderRoot {
   touch-action: none;
   user-select: none;
 
@@ -29,7 +29,7 @@
   height: 20px;
 }
 
-.SliderTrack {
+.sliderTrack {
   position: relative;
 
   flex-grow: 1;
@@ -40,14 +40,14 @@
   border-radius: 9999px;
 }
 
-.SliderRange {
+.sliderRange {
   position: absolute;
   height: 100%;
   background-color: var(--color-accent-500);
   border-radius: 9999px;
 }
 
-.SliderThumb {
+.sliderThumb {
   cursor: pointer;
 
   display: block;
@@ -60,6 +60,6 @@
   border-radius: 10px;
 }
 
-.SliderThumb:focus {
+.sliderThumb:focus {
   outline: none;
 }

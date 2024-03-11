@@ -33,7 +33,7 @@ export const Select = ({
   selectItems,
   value,
 }: SelectProps) => (
-  <div className={s.SelectContainer}>
+  <div className={s.selectContainer}>
     <SelectRadix.Root
       defaultOpen={defaultOpen}
       defaultValue={defaultValue}
@@ -42,24 +42,24 @@ export const Select = ({
       onValueChange={onValueChange}
       value={value}
     >
-      <Typography className={s.SelectLabel} data-disabled={disabled} variant={'body2'}>
+      <Typography className={s.selectLabel} data-disabled={disabled} variant={'body2'}>
         {label}
       </Typography>
-      <SelectRadix.Trigger className={s.SelectTrigger}>
+      <SelectRadix.Trigger className={s.selectTrigger}>
         <Typography variant={'body1'}>
           <SelectRadix.Value placeholder={placeholder} />
         </Typography>
-        <SelectRadix.Icon className={s.SelectIcon}>
+        <SelectRadix.Icon className={s.selectIcon}>
           <ArrowIosDownOutlinedIcon size={16} />
         </SelectRadix.Icon>
       </SelectRadix.Trigger>
       <SelectRadix.Portal>
-        <SelectRadix.Content className={s.SelectContent} position={'popper'} side={'bottom'}>
+        <SelectRadix.Content className={s.selectContent} position={'popper'} side={'bottom'}>
           <SelectRadix.Viewport>
             <SelectRadix.Group>
               {selectItems.map(si => (
                 <SelectRadix.Item
-                  className={s.SelectItem}
+                  className={s.selectItem}
                   disabled={si.disabled}
                   key={si.value}
                   value={si.value}

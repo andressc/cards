@@ -1,10 +1,10 @@
-.RadioGroupRoot {
+.radioGroupRoot {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.RadioGroupElement {
+.radioGroupElement {
   cursor: pointer;
 
   display: flex;
@@ -14,7 +14,7 @@
   width: fit-content;
 }
 
-.RadioGroupItem {
+.radioGroupItem {
   all: unset;
 
   position: relative;
@@ -57,7 +57,7 @@
   }
 }
 
-.RadioGroupIndicator {
+.radioGroupIndicator {
   position: relative;
 
   display: flex;
@@ -78,16 +78,16 @@
     background-color: var(--color-accent-500);
     border-radius: 50%;
 
-    .RadioGroupItem[data-disabled] & {
+    .radioGroupItem[data-disabled] & {
       background-color: var(--color-accent-900);
     }
   }
 }
 
-.RadioGroupElementDisabled {
+.radioGroupElementDisabled {
   cursor: initial;
 }
 
-.LabelDisabled {
+.labelDisabled {
   color: var(--color-light-900);
 }

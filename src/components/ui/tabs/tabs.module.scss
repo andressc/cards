@@ -1,15 +1,15 @@
-.TabsRoot {
+.tabsRoot {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.TabsList {
+.tabsList {
   display: flex;
   flex-shrink: 0;
 }
 
-.TabsTrigger {
+.tabsTrigger {
   all: unset;
 
   cursor: pointer;
@@ -67,7 +67,7 @@
   }
 }
 
-.TabsContent {
+.tabsContent {
   flex-grow: 1;
 
   padding: 20px;

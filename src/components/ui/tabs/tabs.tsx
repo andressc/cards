@@ -30,15 +30,15 @@ export const Tabs = ({
   value,
 }: TabsProps) => (
   <TabsRadix.Root
-    className={cn(s.TabsRoot, classname)}
+    className={cn(s.tabsRoot, classname)}
     defaultValue={defaultValue}
     onValueChange={onValueChange}
     value={value}
   >
-    <TabsRadix.List className={s.TabsList}>
+    <TabsRadix.List className={s.tabsList}>
       {tabs.map(tab => (
         <TabsRadix.Trigger
-          className={s.TabsTrigger}
+          className={s.tabsTrigger}
           disabled={tab.disabled}
           key={tab.value}
           value={tab.value}
@@ -58,7 +58,7 @@ export type TabContentProps = {
 
 export const TabContent = ({ children, value }: TabContentProps) => {
   return (
-    <TabsRadix.Content className={s.content} value={value}>
+    <TabsRadix.Content className={s.tabsContent} value={value}>
       {children}
     </TabsRadix.Content>
   )

@@ -12,10 +12,8 @@ export type TypographyProps<T extends ElementType = 'div'> = {
 export const Card = <T extends ElementType = 'div'>(props: TypographyProps<T>) => {
   const { as: Component = 'div', children, className, ...rest } = props
 
-  const classNames = cn(s.card, className)
-
   return (
-    <Component className={classNames} {...rest}>
+    <Component className={cn(s.cardContainer, className)} {...rest}>
       {children}
     </Component>
   )

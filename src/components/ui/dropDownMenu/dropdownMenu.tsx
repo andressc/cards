@@ -20,16 +20,16 @@ export const DropdownMenu = ({
   return (
     <DropdownMenuRadix.Root>
       <DropdownMenuRadix.Trigger asChild>
-        <button aria-label={'Customise options'} className={cn(s.IconButton, className)}>
+        <button aria-label={'Customise options'} className={cn(s.iconButton, className)}>
           {trigger}
         </button>
       </DropdownMenuRadix.Trigger>
 
       <DropdownMenuRadix.Portal>
-        <DropdownMenuRadix.Content align={align} className={s.DropdownMenuContent} sideOffset={10}>
+        <DropdownMenuRadix.Content align={align} className={s.dropdownMenuContent} sideOffset={10}>
           {children}
-          <DropdownMenuRadix.Arrow asChild className={s.DropdownMenuArrowBox}>
-            <div className={s.DropdownMenuArrow} />
+          <DropdownMenuRadix.Arrow asChild className={s.dropdownMenuArrowBox}>
+            <div className={s.dropdownMenuArrow} />
           </DropdownMenuRadix.Arrow>
         </DropdownMenuRadix.Content>
       </DropdownMenuRadix.Portal>
@@ -53,7 +53,7 @@ export const DropDownMenuItem = ({
   return (
     <DropdownMenuRadix.Item
       asChild
-      className={cn(s.DropdownMenuItem, className)}
+      className={cn(s.dropdownMenuItem, className)}
       disabled={disabled}
       onSelect={onSelect}
     >
@@ -80,7 +80,7 @@ export const DropDownMenuItemWithIcon = ({
 }: DropDownMenuItemPropsWithIcon) => {
   return (
     <DropdownMenuRadix.Item
-      className={cn(s.DropdownMenuItem, className)}
+      className={cn(s.dropdownMenuItem, className)}
       {...rest}
       disabled={disabled}
     >
@@ -91,5 +91,5 @@ export const DropDownMenuItemWithIcon = ({
 }
 
 export const DropDownMenuSeparator = () => {
-  return <DropdownMenuRadix.Separator className={s.DropdownMenuSeparator} />
+  return <DropdownMenuRadix.Separator className={s.dropdownMenuSeparator} />
 }

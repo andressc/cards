@@ -31,7 +31,7 @@ export const RadioGroup = ({
   return (
     <RadioGroupRadix.Root
       aria-label={'View density'}
-      className={s.RadioGroupRoot}
+      className={s.radioGroupRoot}
       defaultValue={defaultValue}
       disabled={disabled}
       name={name}
@@ -40,15 +40,15 @@ export const RadioGroup = ({
     >
       {options.map(v => (
         <div
-          className={cn(s.RadioGroupElement, { [s.RadioGroupElementDisabled]: disabled })}
+          className={cn(s.radioGroupElement, { [s.radioGroupElementDisabled]: disabled })}
           key={v.value}
         >
-          <RadioGroupRadix.Item className={s.RadioGroupItem} id={v.value} value={v.value}>
-            <RadioGroupRadix.Indicator className={s.RadioGroupIndicator} />
+          <RadioGroupRadix.Item className={s.radioGroupItem} id={v.value} value={v.value}>
+            <RadioGroupRadix.Indicator className={s.radioGroupIndicator} />
           </RadioGroupRadix.Item>
           <Typography
             as={'label'}
-            className={cn({ [s.LabelDisabled]: disabled })}
+            className={cn({ [s.labelDisabled]: disabled })}
             htmlFor={v.value}
             variant={'body2'}
           >

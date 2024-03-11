@@ -32,16 +32,16 @@ export const Slider = ({
   value,
 }: SliderProps) => {
   return (
-    <div className={s.SliderContainer}>
+    <div className={cn(s.sliderContainer, className)}>
       {value && (
-        <Typography as={'div'} className={s.SliderNumber} variant={'body1'}>
+        <Typography as={'div'} className={s.sliderNumber} variant={'body1'}>
           {value[0]}
         </Typography>
       )}
 
-      <div className={cn(s.checkboxContainer, className)}>
+      <div>
         <SliderRadix.Root
-          className={s.SliderRoot}
+          className={s.sliderRoot}
           defaultValue={defaultValue}
           disabled={disabled}
           id={id}
@@ -53,15 +53,15 @@ export const Slider = ({
           step={step}
           value={value}
         >
-          <SliderRadix.Track className={s.SliderTrack}>
-            <SliderRadix.Range className={s.SliderRange} />
+          <SliderRadix.Track className={s.sliderTrack}>
+            <SliderRadix.Range className={s.sliderRange} />
           </SliderRadix.Track>
-          <SliderRadix.Thumb aria-label={'Volume'} className={s.SliderThumb} />
-          <SliderRadix.Thumb aria-label={'Volume'} className={s.SliderThumb} />
+          <SliderRadix.Thumb aria-label={'Volume'} className={s.sliderThumb} />
+          <SliderRadix.Thumb aria-label={'Volume'} className={s.sliderThumb} />
         </SliderRadix.Root>
       </div>
       {value && (
-        <Typography as={'div'} className={s.SliderNumber} variant={'body1'}>
+        <Typography as={'div'} className={s.sliderNumber} variant={'body1'}>
           {value[1]}
         </Typography>
       )}

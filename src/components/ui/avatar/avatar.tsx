@@ -20,9 +20,9 @@ export const Avatar = ({
   src,
   ...rest
 }: AvatarProps) => (
-  <AvatarRadix.Root className={s.AvatarRoot}>
-    <AvatarRadix.Image alt={alt} className={cn(s.AvatarImage, className)} src={src} {...rest} />
-    <AvatarRadix.Fallback className={s.AvatarFallback} delayMs={fallbackDelayMs}>
+  <AvatarRadix.Root className={s.avatarRoot}>
+    <AvatarRadix.Image alt={alt} className={cn(s.avatarImage, className)} src={src} {...rest} />
+    <AvatarRadix.Fallback className={s.avatarFallback} delayMs={fallbackDelayMs}>
       {fallback}
     </AvatarRadix.Fallback>
   </AvatarRadix.Root>
