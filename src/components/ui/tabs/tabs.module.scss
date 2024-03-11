@@ -1,0 +1,81 @@
+.TabsRoot {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.TabsList {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.TabsTrigger {
+  all: unset;
+
+  cursor: pointer;
+  user-select: none;
+
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+  height: 45px;
+  padding: 0 20px;
+
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 1;
+  color: var(--color-light-100);
+
+  border-top: 1px solid var(--color-dark-300);
+  border-right: 1px solid var(--color-dark-300);
+  border-bottom: 1px solid var(--color-dark-300);
+
+  &:first-child {
+    border-left: 1px solid var(--color-dark-300);
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+  }
+
+  &:last-child {
+    border-right: 1px solid var(--color-dark-300);
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+  }
+
+  &:hover:not([data-disabled], [data-state='active']) {
+    color: var(--color-light-900);
+    background-color: var(--color-dark-300);
+    border-color: var(--color-dark-100);
+  }
+
+  &[data-state='active'] {
+    background-color: var(--color-accent-500);
+    border-color: var(--color-accent-500);
+
+    &:focus {
+      position: relative;
+    }
+  }
+
+  &[data-disabled] {
+    cursor: initial;
+    color: var(--color-dark-300);
+    background-color: var(--color-dark-700);
+  }
+}
+
+.TabsContent {
+  flex-grow: 1;
+
+  padding: 20px;
+
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  outline: none;
+
+  &:focus {
+  }
+}

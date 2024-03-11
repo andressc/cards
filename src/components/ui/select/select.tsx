@@ -54,12 +54,7 @@ export const Select = ({
         </SelectRadix.Icon>
       </SelectRadix.Trigger>
       <SelectRadix.Portal>
-        <SelectRadix.Content
-          avoidCollisions={false}
-          className={s.SelectContent}
-          position={'popper'}
-          side={'bottom'}
-        >
+        <SelectRadix.Content className={s.SelectContent} position={'popper'} side={'bottom'}>
           <SelectRadix.Viewport>
             <SelectRadix.Group>
               {selectItems.map(si => (

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import HeartIcon from '@/assets/icons/components/HeartIcon'
+import MoreVerticalOutlinedIcon from '@/assets/icons/components/MoreVerticalOutlinedIcon'
+import PersonAddIcon from '@/assets/icons/components/PersonAddIcon'
 import PlayCircleOutlinedIcon from '@/assets/icons/components/PlayCircleOutlinedIcon'
 import { Avatar } from '@/components/ui/avatar'
 import { Cell } from '@/components/ui/cell'
@@ -48,15 +49,20 @@ export const WithIcon: Story = {
   args: {
     children: (
       <>
-        <DropDownMenuItemWithIcon icon={HeartIcon} label={'Label'} onSelect={() => {}} />
+        <DropDownMenuItemWithIcon icon={PersonAddIcon} label={'Label'} onSelect={() => {}} />
         <DropDownMenuSeparator />
-        <DropDownMenuItemWithIcon icon={HeartIcon} label={'Label'} onSelect={() => {}} />
+        <DropDownMenuItemWithIcon icon={PersonAddIcon} label={'Label'} onSelect={() => {}} />
         <DropDownMenuSeparator />
-        <DropDownMenuItemWithIcon disabled icon={HeartIcon} label={'Label'} onSelect={() => {}} />
+        <DropDownMenuItemWithIcon
+          disabled
+          icon={PersonAddIcon}
+          label={'Label'}
+          onSelect={() => {}}
+        />
         <DropDownMenuSeparator />
-        <DropDownMenuItemWithIcon icon={HeartIcon} label={'Label'} onSelect={() => {}} />
+        <DropDownMenuItemWithIcon icon={PersonAddIcon} label={'Label'} onSelect={() => {}} />
       </>
     ),
-    trigger: <HeartIcon />,
+    trigger: <MoreVerticalOutlinedIcon />,
   },
 }
