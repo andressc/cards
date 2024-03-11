@@ -1,12 +1,15 @@
 import { ChangeEvent, useState } from 'react'
 
 import PersonIcon from '@/assets/icons/components/PersonIcon'
+import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Checkbox } from '@/components/ui/checkbox'
 import { RadioGroup } from '@/components/ui/radioGroup'
 import { Select } from '@/components/ui/select'
 import { Slider } from '@/components/ui/slider'
 import { TextField } from '@/components/ui/textField'
+
+import HeartIcon from './assets/icons/components/HeartIcon'
 
 function App() {
   const [value, setValue] = useState('efwef')
@@ -108,6 +111,10 @@ function App() {
           placeholder={'dwdweefdwef'}
           selectItems={selectItems}
         />
+        <Button icon={<HeartIcon />} variant={'primary'}>
+          Анюта
+        </Button>
+        <TextField errorText={'error'} />
       </Card>
     </>
   )

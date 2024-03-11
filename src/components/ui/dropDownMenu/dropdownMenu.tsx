@@ -1,111 +1,95 @@
-import React from 'react'
+import { ComponentPropsWithoutRef, ElementType, ReactNode } from 'react'
 
-import ArrowIosForwardOutlinedIcon from '@/assets/icons/components/ArrowIosForwardOutlinedIcon'
-import CheckboxCheckedIcon from '@/assets/icons/components/CheckboxCheckedIcon'
-import MenuOutlinedIcon from '@/assets/icons/components/MenuOutlinedIcon'
-import MoreHorizontalOutlinedIcon from '@/assets/icons/components/MoreHorizontalOutlinedIcon'
 import * as DropdownMenuRadix from '@radix-ui/react-dropdown-menu'
+import cn from 'classnames'
 
 import s from './dropdownMenu.module.scss'
+type DropdownMenuProps = {
+  align?: 'center' | 'end' | 'start'
+  children: ReactNode
+  className?: string
+  trigger?: ReactNode
+}
 
-export const DropdownMenu = () => {
-  const [bookmarksChecked, setBookmarksChecked] = React.useState(true)
-  const [urlsChecked, setUrlsChecked] = React.useState(false)
-  const [person, setPerson] = React.useState('pedro')
-
+export const DropdownMenu = ({
+  align = 'end',
+  children,
+  className,
+  trigger,
+}: DropdownMenuProps) => {
   return (
     <DropdownMenuRadix.Root>
       <DropdownMenuRadix.Trigger asChild>
-        <button aria-label={'Customise options'} className={s.IconButton}>
-          <MenuOutlinedIcon />
+        <button aria-label={'Customise options'} className={cn(s.IconButton, className)}>
+          {trigger}
         </button>
       </DropdownMenuRadix.Trigger>
 
       <DropdownMenuRadix.Portal>
-        <DropdownMenuRadix.Content className={s.DropdownMenuContent} sideOffset={5}>
-          <DropdownMenuRadix.Item className={s.DropdownMenuItem}>
-            New Tab <div className={s.RightSlot}>⌘+T</div>
-          </DropdownMenuRadix.Item>
-          <DropdownMenuRadix.Item className={s.DropdownMenuItem}>
-            New Window <div className={s.RightSlot}>⌘+N</div>
-          </DropdownMenuRadix.Item>
-          <DropdownMenuRadix.Item className={s.DropdownMenuItem} disabled>
-            New Private Window <div className={s.RightSlot}>⇧+⌘+N</div>
-          </DropdownMenuRadix.Item>
-          <DropdownMenuRadix.Sub>
-            <DropdownMenuRadix.SubTrigger className={s.DropdownMenuSubTrigger}>
-              More Tools
-              <div className={s.RightSlot}>
-                <ArrowIosForwardOutlinedIcon />
-              </div>
-            </DropdownMenuRadix.SubTrigger>
-            <DropdownMenuRadix.Portal>
-              <DropdownMenuRadix.SubContent
-                alignOffset={-5}
-                className={s.DropdownMenuSubContent}
-                sideOffset={2}
-              >
-                <DropdownMenuRadix.Item className={s.DropdownMenuItem}>
-                  Save Page As… <div className={s.RightSlot}>⌘+S</div>
-                </DropdownMenuRadix.Item>
-                <DropdownMenuRadix.Item className={s.DropdownMenuItem}>
-                  Create Shortcut…
-                </DropdownMenuRadix.Item>
-                <DropdownMenuRadix.Item className={s.DropdownMenuItem}>
-                  Name Window…
-                </DropdownMenuRadix.Item>
-                <DropdownMenuRadix.Separator className={s.DropdownMenuSeparator} />
-                <DropdownMenuRadix.Item className={s.DropdownMenuItem}>
-                  Developer Tools
-                </DropdownMenuRadix.Item>
-              </DropdownMenuRadix.SubContent>
-            </DropdownMenuRadix.Portal>
-          </DropdownMenuRadix.Sub>
-
-          <DropdownMenuRadix.Separator className={s.DropdownMenuSeparator} />
-
-          <DropdownMenuRadix.CheckboxItem
-            checked={bookmarksChecked}
-            className={s.DropdownMenuCheckboxItem}
-            onCheckedChange={setBookmarksChecked}
-          >
-            <DropdownMenuRadix.ItemIndicator className={s.DropdownMenuItemIndicator}>
-              <CheckboxCheckedIcon />
-            </DropdownMenuRadix.ItemIndicator>
-            Show Bookmarks <div className={s.RightSlot}>⌘+B</div>
-          </DropdownMenuRadix.CheckboxItem>
-          <DropdownMenuRadix.CheckboxItem
-            checked={urlsChecked}
-            className={s.DropdownMenuCheckboxItem}
-            onCheckedChange={setUrlsChecked}
-          >
-            <DropdownMenuRadix.ItemIndicator className={s.DropdownMenuItemIndicator}>
-              <CheckboxCheckedIcon />
-            </DropdownMenuRadix.ItemIndicator>
-            Show Full URLs
-          </DropdownMenuRadix.CheckboxItem>
-
-          <DropdownMenuRadix.Separator className={s.DropdownMenuSeparator} />
-
-          <DropdownMenuRadix.Label className={s.DropdownMenuLabel}>People</DropdownMenuRadix.Label>
-          <DropdownMenuRadix.RadioGroup onValueChange={setPerson} value={person}>
-            <DropdownMenuRadix.RadioItem className={s.DropdownMenuRadioItem} value={'pedro'}>
-              <DropdownMenuRadix.ItemIndicator className={s.DropdownMenuItemIndicator}>
-                <MoreHorizontalOutlinedIcon />
-              </DropdownMenuRadix.ItemIndicator>
-              Pedro Duarte
-            </DropdownMenuRadix.RadioItem>
-            <DropdownMenuRadix.RadioItem className={s.DropdownMenuRadioItem} value={'colm'}>
-              <DropdownMenuRadix.ItemIndicator className={s.DropdownMenuItemIndicator}>
-                <MoreHorizontalOutlinedIcon />
-              </DropdownMenuRadix.ItemIndicator>
-              Colm Tuite
-            </DropdownMenuRadix.RadioItem>
-          </DropdownMenuRadix.RadioGroup>
-
-          <DropdownMenuRadix.Arrow className={s.DropdownMenuArrow} />
+        <DropdownMenuRadix.Content align={align} className={s.DropdownMenuContent} sideOffset={10}>
+          {children}
+          <DropdownMenuRadix.Arrow asChild className={s.DropdownMenuArrowBox}>
+            <div className={s.DropdownMenuArrow} />
+          </DropdownMenuRadix.Arrow>
         </DropdownMenuRadix.Content>
       </DropdownMenuRadix.Portal>
     </DropdownMenuRadix.Root>
   )
+}
+
+type DropDownMenuItemProps = {
+  children?: ReactNode
+  className?: string
+  disabled?: boolean
+  onSelect: (event: Event) => void
+}
+
+export const DropDownMenuItem = ({
+  children,
+  className,
+  disabled,
+  onSelect,
+}: DropDownMenuItemProps) => {
+  return (
+    <DropdownMenuRadix.Item
+      asChild
+      className={cn(s.DropdownMenuItem, className)}
+      disabled={disabled}
+      onSelect={onSelect}
+    >
+      <div>{children}</div>
+    </DropdownMenuRadix.Item>
+  )
+}
+
+type DropDownMenuItemPropsWithIcon = {
+  className?: string
+  disabled?: boolean
+  icon: ElementType
+  label: string
+  onSelect: (event: Event) => void
+} & ComponentPropsWithoutRef<'div'>
+
+export const DropDownMenuItemWithIcon = ({
+  className,
+  disabled,
+  icon: Component,
+  label,
+  onSelect,
+  ...rest
+}: DropDownMenuItemPropsWithIcon) => {
+  return (
+    <DropdownMenuRadix.Item
+      className={cn(s.DropdownMenuItem, className)}
+      {...rest}
+      disabled={disabled}
+    >
+      <Component size={16} />
+      <span>{label}</span>
+    </DropdownMenuRadix.Item>
+  )
+}
+
+export const DropDownMenuSeparator = () => {
+  return <DropdownMenuRadix.Separator className={s.DropdownMenuSeparator} />
 }
