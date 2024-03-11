@@ -1,0 +1,14 @@
+.cellContainer {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.subtitle {
+  color: var(--color-dark-100);
+}
