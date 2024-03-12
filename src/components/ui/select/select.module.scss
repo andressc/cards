@@ -67,7 +67,7 @@
   overflow: hidden;
 
   width: var(--radix-select-trigger-width);
-  height: 200px;
+  max-height: 200px;
 
   background-color: var(--color-dark-900);
   border-top: 0;

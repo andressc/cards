@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { Card } from '@/components/ui/card'
-
 import { Select } from './'
 
 const meta = {
@@ -13,7 +11,7 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const selectItems = [
+const selectItems = [
   {
     label: 'select1',
     value: 'select1',

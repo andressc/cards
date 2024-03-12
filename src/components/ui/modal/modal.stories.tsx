@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Modal } from '@/components/ui/modal/modal'
 import { Select } from '@/components/ui/select'
-import { selectItems } from '@/components/ui/select/select.stories'
 import { TextField } from '@/components/ui/textField'
 
 const meta = {
@@ -17,6 +16,22 @@ const meta = {
 
 export default meta
 type Story = StoryObj<typeof meta>
+
+const selectItems = [
+  {
+    label: 'select1',
+    value: 'select1',
+  },
+  {
+    label: 'select2',
+    value: 'select2',
+  },
+  {
+    disabled: true,
+    label: 'select3',
+    value: 'select3',
+  },
+]
 
 const commonArgs = {
   children: (
