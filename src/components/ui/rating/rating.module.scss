@@ -1,0 +1,9 @@
+.ratingContainer {
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+}
+
+.ratingItem {
+  color: var(--color-warning-300);
+}

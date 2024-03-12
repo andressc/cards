@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import { Rating } from '@/components/ui/rating'
+
 import { Table, TableBody, TableCell, TableHead, TableRow } from './'
 
 const meta = {
@@ -27,23 +29,29 @@ export const WithControl: Story = {
         <TableBody>
           <TableRow>
             <TableCell>1</TableCell>
-            <TableCell>2</TableCell>
-            <TableCell>3</TableCell>
-            <TableCell>4</TableCell>
-            <TableCell>4</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>1</TableCell>
-            <TableCell>2</TableCell>
-            <TableCell>3</TableCell>
-            <TableCell>4</TableCell>
+            <TableCell>This is how This works in JavaScript</TableCell>
+            <TableCell>18.03.2021</TableCell>
+            <TableCell>
+              <Rating setRating={() => {}} value={5} />
+            </TableCell>
             <TableCell>4</TableCell>
           </TableRow>
           <TableRow>
             <TableCell>1</TableCell>
-            <TableCell>2</TableCell>
-            <TableCell>3</TableCell>
+            <TableCell>This is how This works in JavaScript</TableCell>
+            <TableCell>18.03.2021</TableCell>
+            <TableCell>
+              <Rating setRating={() => {}} value={3} />
+            </TableCell>
             <TableCell>4</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>1</TableCell>
+            <TableCell>This is how This works in JavaScript</TableCell>
+            <TableCell>18.03.2021</TableCell>
+            <TableCell>
+              <Rating setRating={() => {}} value={1} />
+            </TableCell>
             <TableCell>4</TableCell>
           </TableRow>
         </TableBody>
