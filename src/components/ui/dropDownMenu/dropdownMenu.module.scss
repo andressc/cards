@@ -2,6 +2,7 @@
   will-change: transform, opacity;
 
   position: relative;
+  left: 10px;
 
   min-width: 220px;
   padding: 5px;
@@ -74,7 +75,7 @@
 .dropdownMenuArrow {
   position: absolute;
   top: -3px;
-  left: calc(50% - 3px);
+  left: calc(50% + 6px);
   transform: rotate(45deg);
 
   width: 8px;
