@@ -1,44 +1,46 @@
+import { ComponentProps } from 'react'
+
 import CloseOutlinedIcon from '@/assets/icons/components/CloseOutlinedIcon'
+import { Typography } from '@/components/ui/typography'
 import * as DialogRadix from '@radix-ui/react-dialog'
+import cn from 'classnames'
 
 import s from './modal.module.scss'
 
-export const Modal = () => (
-  <DialogRadix.Root>
-    <DialogRadix.Trigger asChild>
-      <button className={s.Button}>Edit profile</button>
-    </DialogRadix.Trigger>
+export type ModalProps = {
+  onClose?: () => void
+  open: boolean
+  showCloseButton?: boolean
+  title?: string
+} & ComponentProps<'div'>
+
+export const Modal = ({
+  children,
+  className,
+  onClose,
+  open = false,
+  showCloseButton = true,
+  title,
+}: ModalProps) => (
+  <DialogRadix.Root onOpenChange={onClose} open={open}>
     <DialogRadix.Portal>
-      <DialogRadix.Overlay className={s.DialogOverlay} />
-      <DialogRadix.Content className={s.DialogContent}>
-        <div>
-          <DialogRadix.Title className={s.DialogTitle}>Edit profile</DialogRadix.Title>
-          <DialogRadix.Close asChild>
-            <button aria-label={'Close'} className={s.IconButton}>
-              <CloseOutlinedIcon />
-            </button>
-          </DialogRadix.Close>
-        </div>
-        <DialogRadix.Description className={s.DialogDescription}>
-          Make changes to your profile here. Click save when youre done.
-        </DialogRadix.Description>
-        <fieldset className={s.Fieldset}>
-          <label className={s.Label} htmlFor={'name'}>
-            Name
-          </label>
-          <input className={s.Input} defaultValue={'Pedro Duarte'} id={'name'} />
-        </fieldset>
-        <fieldset className={s.Fieldset}>
-          <label className={s.Label} htmlFor={'username'}>
-            Username
-          </label>
-          <input className={s.Input} defaultValue={'@peduarte'} id={'username'} />
-        </fieldset>
-        <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 25 }}>
-          <DialogRadix.Close asChild>
-            <button className={s.Button}>Save changes</button>
-          </DialogRadix.Close>
-        </div>
+      <DialogRadix.Overlay className={s.dialogOverlay} />
+      <DialogRadix.Content className={cn(s.dialogContent, className)}>
+        {(showCloseButton || title) && (
+          <div className={s.dialogHeader}>
+            <DialogRadix.Title asChild className={s.dialogTitle}>
+              <Typography variant={'h3'}>{title}</Typography>
+            </DialogRadix.Title>
+            {showCloseButton && (
+              <DialogRadix.Close asChild>
+                <button aria-label={'Close'} className={s.iconButton}>
+                  <CloseOutlinedIcon />
+                </button>
+              </DialogRadix.Close>
+            )}
+          </div>
+        )}
+        <div className={s.contentBox}>{children}</div>
       </DialogRadix.Content>
     </DialogRadix.Portal>
   </DialogRadix.Root>
