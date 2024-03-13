@@ -1,7 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import { Pack } from '@/components/ui/pack'
 import { Rating } from '@/components/ui/rating'
 
+import pack from '../../../assets/pack.png'
 import { Table, TableBody, TableCell, TableHead, TableRow } from './'
 
 const meta = {
@@ -28,7 +30,9 @@ export const WithControl: Story = {
         </TableHead>
         <TableBody>
           <TableRow>
-            <TableCell>1</TableCell>
+            <TableCell>
+              <Pack image={pack}>Pack Name</Pack>
+            </TableCell>
             <TableCell>This is how This works in JavaScript</TableCell>
             <TableCell>18.03.2021</TableCell>
             <TableCell>
@@ -37,7 +41,9 @@ export const WithControl: Story = {
             <TableCell>4</TableCell>
           </TableRow>
           <TableRow>
-            <TableCell>1</TableCell>
+            <TableCell>
+              <Pack image={pack}>Pack Name</Pack>
+            </TableCell>
             <TableCell>This is how This works in JavaScript</TableCell>
             <TableCell>18.03.2021</TableCell>
             <TableCell>
@@ -46,7 +52,7 @@ export const WithControl: Story = {
             <TableCell>4</TableCell>
           </TableRow>
           <TableRow>
-            <TableCell>1</TableCell>
+            <TableCell>This is how This</TableCell>
             <TableCell>This is how This works in JavaScript</TableCell>
             <TableCell>18.03.2021</TableCell>
             <TableCell>

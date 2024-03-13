@@ -52,7 +52,6 @@ const commonArgs = {
     </>
   ),
   open: true,
-  title: 'Title',
 }
 
 export const Default: Story = {
@@ -65,7 +64,7 @@ export const Default: Story = {
     return (
       <>
         <Button onClick={() => setIsOpen(true)}>OpenModal</Button>
-        <Modal onClose={() => setIsOpen(false)} title={'Wedfwef'} {...args} open={isOpen} />
+        <Modal onClose={() => setIsOpen(false)} title={'Title'} {...args} open={isOpen} />
       </>
     )
   },
@@ -84,10 +83,26 @@ export const WithoutCloseButton: Story = {
         <Modal
           onClose={() => setIsOpen(false)}
           showCloseButton={false}
-          title={'Wedfwef'}
+          title={'Title'}
           {...args}
           open={isOpen}
         />
+      </>
+    )
+  },
+}
+
+export const WithoutHeader: Story = {
+  args: {
+    ...commonArgs,
+  },
+  render: args => {
+    const [isOpen, setIsOpen] = useState(false)
+
+    return (
+      <>
+        <Button onClick={() => setIsOpen(true)}>OpenModal</Button>
+        <Modal onClose={() => setIsOpen(false)} showCloseButton={false} {...args} open={isOpen} />
       </>
     )
   },

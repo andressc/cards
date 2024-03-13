@@ -1,6 +1,7 @@
 import ArrowIosDownOutlinedIcon from '@/assets/icons/components/ArrowIosDownOutlinedIcon'
 import { Typography } from '@/components/ui/typography'
 import * as SelectRadix from '@radix-ui/react-select'
+import cn from 'classnames'
 
 import s from './select.module.scss'
 
@@ -11,6 +12,7 @@ type SelectValue = {
 }
 
 export type SelectProps = {
+  className?: string
   defaultOpen?: boolean
   defaultValue?: string
   disabled?: boolean
@@ -23,6 +25,7 @@ export type SelectProps = {
 }
 
 export const Select = ({
+  className,
   defaultOpen,
   defaultValue,
   disabled,
@@ -42,7 +45,11 @@ export const Select = ({
       onValueChange={onValueChange}
       value={value}
     >
-      <Typography className={s.selectLabel} data-disabled={disabled} variant={'body2'}>
+      <Typography
+        className={cn(s.selectLabel, className)}
+        data-disabled={disabled}
+        variant={'body2'}
+      >
         {label}
       </Typography>
       <SelectRadix.Trigger className={s.selectTrigger}>
