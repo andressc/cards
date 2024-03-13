@@ -73,3 +73,11 @@
 .fullWidth {
   width: 100%;
 }
+
+.icon {
+  padding: 0;
+
+  &:focus {
+    outline: none;
+  }
+}

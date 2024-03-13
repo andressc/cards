@@ -1,5 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import EditOutlinedIcon from '@/assets/icons/components/EditOutlinedIcon'
+import PlayCircleOutlinedIcon from '@/assets/icons/components/PlayCircleOutlinedIcon'
+import TrashOutlinedIcon from '@/assets/icons/components/TrashOutlinedIcon'
+import { Button } from '@/components/ui/button'
 import { Pack } from '@/components/ui/pack'
 import { Rating } from '@/components/ui/rating'
 
@@ -14,6 +18,14 @@ const meta = {
 
 export default meta
 type Story = StoryObj<typeof meta>
+
+const buttons = (
+  <div style={{ display: 'flex', gap: 10 }}>
+    <Button icon={<PlayCircleOutlinedIcon size={16} />} variant={'icon'} />
+    <Button icon={<EditOutlinedIcon size={16} />} variant={'icon'} />
+    <Button icon={<TrashOutlinedIcon size={16} />} variant={'icon'} />
+  </div>
+)
 
 export const WithControl: Story = {
   args: {
@@ -38,7 +50,7 @@ export const WithControl: Story = {
             <TableCell>
               <Rating setRating={() => {}} value={5} />
             </TableCell>
-            <TableCell>4</TableCell>
+            <TableCell>{buttons}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell>
@@ -49,7 +61,7 @@ export const WithControl: Story = {
             <TableCell>
               <Rating setRating={() => {}} value={3} />
             </TableCell>
-            <TableCell>4</TableCell>
+            <TableCell>{buttons}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell>This is how This</TableCell>
@@ -58,7 +70,7 @@ export const WithControl: Story = {
             <TableCell>
               <Rating setRating={() => {}} value={1} />
             </TableCell>
-            <TableCell>4</TableCell>
+            <TableCell>{buttons}</TableCell>
           </TableRow>
         </TableBody>
       </>

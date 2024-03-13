@@ -4,6 +4,7 @@ import PersonIcon from '@/assets/icons/components/PersonIcon'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Checkbox } from '@/components/ui/checkbox'
+import { Modal } from '@/components/ui/modal/modal'
 import { RadioGroup } from '@/components/ui/radioGroup'
 import { Select } from '@/components/ui/select'
 import { Slider } from '@/components/ui/slider'
@@ -16,6 +17,7 @@ function App() {
   const [checked, setChecked] = useState(false)
 
   const [values, setValues] = useState([0, 20])
+  const [isOpen, setIsOpen] = useState(false)
 
   const setValueHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.currentTarget.value)
@@ -115,6 +117,14 @@ function App() {
           Анюта
         </Button>
         <TextField errorText={'error'} />
+
+        <Button onClick={() => setIsOpen(true)}>OpenModal</Button>
+        <Modal
+          onClose={() => setIsOpen(false)}
+          open={isOpen}
+          showCloseButton={false}
+          title={'Title'}
+        />
       </Card>
     </>
   )

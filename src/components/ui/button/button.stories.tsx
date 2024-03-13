@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
 import EmailOutlinedIcon from '@/assets/icons/components/EmailOutlinedIcon'
+import PlayCircleOutlinedIcon from '@/assets/icons/components/PlayCircleOutlinedIcon'
 
 import { Button } from './'
 
@@ -64,9 +65,8 @@ export const AsLink: Story = {
 
 export const Icon: Story = {
   args: {
-    children: 'Icon Button',
     disabled: false,
-    icon: <EmailOutlinedIcon />,
-    variant: 'primary',
+    icon: <PlayCircleOutlinedIcon size={16} />,
+    variant: 'icon',
   },
 }
