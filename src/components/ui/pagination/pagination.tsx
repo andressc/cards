@@ -92,7 +92,7 @@ export const Pagination = ({
       <p>Показать</p>
       <Select
         //onValueChange={e => onPageCountChange(Number(e.target.value))}
-        onValueChange={() => onPageCountChange(10)}
+        onValueChange={e => onPageCountChange(10)}
         selectItems={selectItems}
       />
       <p>на странице</p>
