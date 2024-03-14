@@ -14,23 +14,19 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-  args: {
-    currentPage: 1,
-    onPageChange: (page: number) => {},
-    onPageCountChange: (page: number) => {},
-    totalPages: 20,
-  },
-  render: args => {
-    const [currentPage, setCurrentPage] = useState(1)
-    const [totalPages, setTotalPages] = useState(20)
+  render: () => {
+    const [page, setPage] = useState(1)
+    const [perPage, setPerPage] = useState(8)
+    const TOTAL_PAGES_COUNT = 10
 
     return (
       <Pagination
-        {...args}
-        currentPage={currentPage}
-        onPageChange={page => setCurrentPage(page)}
-        onPageCountChange={page => setTotalPages(page)}
-        totalPages={totalPages}
+        count={TOTAL_PAGES_COUNT}
+        onChange={setPage}
+        onPerPageChange={setPerPage}
+        page={page}
+        perPage={perPage}
+        perPageOptions={[5, 8, 12, 100]}
       />
     )
   },

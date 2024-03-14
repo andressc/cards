@@ -1,34 +1,75 @@
-.pagination {
+.root {
   display: flex;
-  gap: 12px;
+  gap: 25px;
   align-items: center;
-  justify-content: center;
 }
 
-.pagination span {
-  cursor: pointer;
+.container {
+  display: flex;
+  gap: 12px;
+  list-style-type: none;
+}
 
-  display: inline-flex;
+@mixin item {
+  all: unset;
+
+  display: flex;
   align-items: center;
   justify-content: center;
 
   width: 24px;
   height: 24px;
 
+  color: var(--color-light-100);
+
   border-radius: 2px;
 }
 
-.pagination span:hover {
-  color: var(--color-light-100);
-  background-color: var(--color-dark-500);
+.item {
+  @include item;
+
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: var(--color-info-900);
+  }
+
+  &:disabled {
+    cursor: initial;
+    opacity: 1;
+  }
+
+  &:hover:not(&:disabled) {
+    background-color: var(--color-dark-500);
+  }
+
+  &.selected {
+    color: var(--color-dark-900);
+    background-color: var(--color-light-100);
+  }
 }
 
-.currentPage {
-  font-weight: bold;
-  color: var(--color-dark-900);
-  background-color: var(--color-light-100);
+.dots {
+  @include item;
+}
+
+.icon {
+  .item:disabled & {
+    // important because icons have style prop
+    color: var(--color-dark-100) !important;
+  }
+}
+
+.selectBox {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+
+  color: var(--color-text-primary);
+  white-space: nowrap;
 }
 
 .select {
-  height: 10px;
+  flex-shrink: 0;
+  width: 52px;
 }

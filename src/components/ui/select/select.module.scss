@@ -41,6 +41,13 @@
     color: var(--color-dark-300);
     border-color: var(--color-dark-300);
   }
+
+  &.pagination {
+    height: 20px;
+    padding: 0 0 0 6px;
+    font-size: var(--font-size-s);
+    line-height: var(--line-height-m);
+  }
 }
 
 .selectIcon {

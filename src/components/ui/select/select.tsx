@@ -5,11 +5,17 @@ import cn from 'classnames'
 
 import s from './select.module.scss'
 
-type SelectValue = {
-  disabled?: boolean
-  label: string
-  value: string
-}
+type SelectValue =
+  | {
+      disabled?: boolean
+      label: number
+      value: number
+    }
+  | {
+      disabled?: boolean
+      label: string
+      value: string
+    }
 
 export type SelectProps = {
   className?: string
@@ -18,10 +24,11 @@ export type SelectProps = {
   disabled?: boolean
   label?: string
   name?: string
-  onValueChange: (value: string) => void
+  onValueChange: (value: number | string) => void
   placeholder?: string
   selectItems: SelectValue[]
   value?: string
+  variant?: 'pagination' | 'primary'
 }
 
 export const Select = ({
@@ -35,6 +42,7 @@ export const Select = ({
   placeholder,
   selectItems,
   value,
+  variant = 'primary',
 }: SelectProps) => (
   <div className={s.selectContainer}>
     <SelectRadix.Root
@@ -66,10 +74,10 @@ export const Select = ({
             <SelectRadix.Group>
               {selectItems.map(si => (
                 <SelectRadix.Item
-                  className={s.selectItem}
+                  className={cn(s.selectItem, { [variant]: variant })}
                   disabled={si.disabled}
                   key={si.value}
-                  value={si.value}
+                  value={si.value.toString()}
                 >
                   <SelectRadix.ItemText>
                     <Typography variant={'body1'}>{si.label}</Typography>
