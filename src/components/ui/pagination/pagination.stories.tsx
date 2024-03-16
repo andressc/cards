@@ -14,6 +14,11 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
+  args: {
+    count: 10,
+    onChange: () => {},
+    page: 3,
+  },
   render: () => {
     const [page, setPage] = useState(1)
     const [perPage, setPerPage] = useState(10)
