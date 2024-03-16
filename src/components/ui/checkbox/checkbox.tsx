@@ -13,7 +13,7 @@ export type CheckboxProps = {
   disabled?: boolean
   id?: string
   label?: ReactNode
-  onChange: (checked: boolean) => void
+  onCheckedChange: (checked: boolean) => void
   required?: boolean
 }
 
@@ -23,7 +23,7 @@ export const Checkbox = ({
   disabled,
   id,
   label,
-  onChange,
+  onCheckedChange,
   required,
 }: CheckboxProps) => {
   return (
@@ -35,7 +35,7 @@ export const Checkbox = ({
             className={s.checkboxRoot}
             disabled={disabled}
             id={id}
-            onCheckedChange={onChange}
+            onCheckedChange={onCheckedChange}
             required={required}
           >
             <CheckboxRadix.Indicator asChild className={s.checkboxIndicator}>

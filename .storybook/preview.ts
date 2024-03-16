@@ -16,9 +16,22 @@ const preview: Preview = {
     options: {
       storySort: {
         method: 'alphabetical',
-        order: ['Components', 'Colors', 'Icons', ['All', '*']],
+        order: ['Components', 'Auth', 'Colors', 'Icons', ['All', '*']],
         locales: 'en-US',
       },
+    },
+    backgrounds: {
+      default: 'dark',
+      values: [
+        {
+          name: 'dark',
+          value: '#000000',
+        },
+        {
+          name: 'light',
+          value: '#ffffff',
+        },
+      ],
     },
   },
 }

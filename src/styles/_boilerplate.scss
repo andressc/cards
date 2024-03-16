@@ -39,3 +39,9 @@ body {
 
   background-color: var(--color-dark-900);
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

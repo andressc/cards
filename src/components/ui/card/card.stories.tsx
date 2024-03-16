@@ -19,3 +19,10 @@ export const Default: Story = {
     children: children,
   },
 }
+
+export const FullWidth: Story = {
+  args: {
+    children: children,
+    fullWidth: true,
+  },
+}
