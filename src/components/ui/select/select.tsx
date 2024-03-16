@@ -60,7 +60,11 @@ export const Select = ({
       >
         {label}
       </Typography>
-      <SelectRadix.Trigger className={s.selectTrigger}>
+      <SelectRadix.Trigger
+        className={cn(s.selectTrigger, {
+          [s.selectTriggerPagination]: variant === 'pagination',
+        })}
+      >
         <Typography variant={'body1'}>
           <SelectRadix.Value placeholder={placeholder} />
         </Typography>
@@ -74,7 +78,9 @@ export const Select = ({
             <SelectRadix.Group>
               {selectItems.map(si => (
                 <SelectRadix.Item
-                  className={cn(s.selectItem, { [variant]: variant })}
+                  className={cn(s.selectItem, {
+                    [s.selectItemPagination]: variant === 'pagination',
+                  })}
                   disabled={si.disabled}
                   key={si.value}
                   value={si.value.toString()}

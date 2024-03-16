@@ -16,8 +16,7 @@
   height: 36px;
   padding: 0 12px;
 
-  font-size: 13px;
-  line-height: 1;
+  font-size: var(--font-size-s);
   color: var(--color-light-100);
 
   border: 1px solid var(--color-dark-300);
@@ -41,13 +40,11 @@
     color: var(--color-dark-300);
     border-color: var(--color-dark-300);
   }
+}
 
-  &.pagination {
-    height: 20px;
-    padding: 0 0 0 6px;
-    font-size: var(--font-size-s);
-    line-height: var(--line-height-m);
-  }
+.selectTriggerPagination {
+  height: 24px;
+  padding: 0 6px;
 }
 
 .selectIcon {
@@ -112,6 +109,11 @@
     background-color: var(--color-accent-900);
     outline: none;
   }
+}
+
+.selectItemPagination {
+  height: 24px;
+  padding: 0 6px;
 }
 
 .selectLabel {
