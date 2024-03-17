@@ -1,3 +1,19 @@
+.buttonContainer {
+  display: flex;
+}
+
+.left {
+  justify-content: flex-start;
+}
+
+.right {
+  justify-content: flex-end;
+}
+
+.center {
+  justify-content: center;
+}
+
 .button {
   all: unset;
 
@@ -9,6 +25,7 @@
   justify-content: center;
 
   box-sizing: border-box;
+  width: fit-content;
   height: 36px;
   padding: 6px 28px;
 

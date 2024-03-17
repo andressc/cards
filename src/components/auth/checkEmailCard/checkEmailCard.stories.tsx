@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { CheckEmailResult } from '@/components/auth/checkEmailResult/checkEmailResult'
+import { CheckEmailCard } from '@/components/auth/checkEmailCard/checkEmailCard'
 import { Card } from '@/components/ui/card'
 
 const meta = {
-  component: CheckEmailResult,
+  component: CheckEmailCard,
   tags: ['autodocs'],
-  title: 'Auth/CheckEmailResult',
-} satisfies Meta<typeof CheckEmailResult>
+  title: 'Auth/CheckEmailCard',
+} satisfies Meta<typeof CheckEmailCard>
 
 export default meta
 type Story = StoryObj<typeof meta>
@@ -17,7 +17,7 @@ export const Default: Story = {
   render: args => {
     return (
       <Card>
-        <CheckEmailResult {...args} />
+        <CheckEmailCard {...args} />
       </Card>
     )
   },

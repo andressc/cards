@@ -34,7 +34,9 @@ export const EditProfileForm = ({ onValueSubmit, ...rest }: FormProps<FormValues
           errorText={errors.nickName?.message}
           label={'Nickname'}
         />
-        <Button type={'submit'}>Save Changes</Button>
+        <Button fullWidth type={'submit'}>
+          Save Changes
+        </Button>
       </form>
     </FormContainer>
   )

@@ -36,7 +36,9 @@ export const CreateNewPasswordForm = ({ onValueSubmit, ...rest }: FormProps<Form
         <Typography color={'secondary'} variant={'body2'}>
           Create new password and we will send you further instructions to email
         </Typography>
-        <Button type={'submit'}>Create New Password</Button>
+        <Button fullWidth type={'submit'}>
+          Create New Password
+        </Button>
       </form>
     </FormContainer>
   )

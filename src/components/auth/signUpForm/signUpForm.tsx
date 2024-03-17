@@ -52,7 +52,9 @@ export const SignUpForm = ({ onValueSubmit, ...rest }: FormProps<FormValues>) =>
           label={'Confirm Password'}
           password
         />
-        <Button type={'submit'}>Sign Up</Button>
+        <Button fullWidth type={'submit'}>
+          Sign Up
+        </Button>
       </form>
     </FormContainer>
   )

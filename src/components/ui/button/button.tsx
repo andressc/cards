@@ -5,6 +5,7 @@ import cn from 'classnames'
 import s from './button.module.scss'
 
 export type ButtonProps<T extends ElementType = 'button'> = {
+  align?: 'center' | 'left' | 'right'
   as?: T
   fullWidth?: boolean
   icon?: ReactNode
@@ -13,6 +14,7 @@ export type ButtonProps<T extends ElementType = 'button'> = {
 
 export const Button = <T extends ElementType = 'button'>(props: ButtonProps<T>) => {
   const {
+    align = 'left',
     as: Component = 'button',
     children,
     className,
@@ -25,9 +27,11 @@ export const Button = <T extends ElementType = 'button'>(props: ButtonProps<T>) 
   const classNames = cn(s.button, s[variant], { [s.fullWidth]: fullWidth }, className)
 
   return (
-    <Component className={classNames} {...rest}>
-      {icon}
-      {children}
-    </Component>
+    <div className={cn(s.buttonContainer, s[align])}>
+      <Component className={classNames} {...rest}>
+        {icon}
+        {children}
+      </Component>
+    </div>
   )
 }

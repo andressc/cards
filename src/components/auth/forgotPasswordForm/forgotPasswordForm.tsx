@@ -36,7 +36,9 @@ export const ForgotPasswordForm = ({ onValueSubmit, ...rest }: FormProps<FormVal
         <Typography color={'secondary'} variant={'body2'}>
           Enter your email address and we will send you further instructions
         </Typography>
-        <Button type={'submit'}>Send Instructions</Button>
+        <Button fullWidth type={'submit'}>
+          Send Instructions
+        </Button>
       </form>
     </FormContainer>
   )

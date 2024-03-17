@@ -6,6 +6,7 @@ import cn from 'classnames'
 import s from './formContainer.module.scss'
 
 export type FormContainerProps = {
+  align?: '' | 'center' | 'left' | 'right'
   footerLink?: string
   footerTitle?: string
   linkTitle?: string
@@ -13,6 +14,7 @@ export type FormContainerProps = {
 } & ComponentProps<'div'>
 
 export const FormContainer = ({
+  align = '',
   children,
   className,
   footerLink,
@@ -22,7 +24,7 @@ export const FormContainer = ({
   ...rest
 }: FormContainerProps) => {
   return (
-    <div className={cn(s.formContainer, className)} {...rest}>
+    <div className={cn(s.formContainer, s[align], className)} {...rest}>
       <Typography align={'center'} className={s.formTitle} variant={'h1'}>
         {title}
       </Typography>

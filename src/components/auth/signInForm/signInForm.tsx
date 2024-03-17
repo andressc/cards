@@ -57,7 +57,7 @@ export const SignInForm = ({ onValueSubmit, ...rest }: FormProps<FormValues>) =>
         <Typography align={'right'} variant={'body2'}>
           Forgot Password?
         </Typography>
-        <Button className={'authFormButton'} type={'submit'}>
+        <Button className={'authFormButton'} fullWidth type={'submit'}>
           Sign In
         </Button>
       </form>
