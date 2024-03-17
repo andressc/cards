@@ -31,7 +31,7 @@ export const CreateNewPasswordForm = ({ onValueSubmit, ...rest }: FormProps<Form
           {...register('password')}
           errorText={errors.password?.message}
           label={'Password'}
-          type={'password'}
+          password
         />
         <Typography color={'secondary'} variant={'body2'}>
           Create new password and we will send you further instructions to email

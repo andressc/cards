@@ -9,11 +9,16 @@ import { z } from 'zod'
 
 import { FormContainer } from '../formContainer'
 
-const signUpSchema = z.object({
-  confirmPassword: validations.min3,
-  email: validations.email,
-  password: validations.min3,
-})
+const signUpSchema = z
+  .object({
+    confirmPassword: validations.min3,
+    email: validations.email,
+    password: validations.min3,
+  })
+  .refine(data => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ['confirmPassword'],
+  })
 
 type FormValues = z.infer<typeof signUpSchema>
 
@@ -39,13 +44,13 @@ export const SignUpForm = ({ onValueSubmit, ...rest }: FormProps<FormValues>) =>
           {...register('password')}
           errorText={errors.password?.message}
           label={'Password'}
-          type={'password'}
+          password
         />
         <TextField
           {...register('confirmPassword')}
           errorText={errors.confirmPassword?.message}
           label={'Confirm Password'}
-          type={'password'}
+          password
         />
         <Button type={'submit'}>Sign Up</Button>
       </form>

@@ -19,7 +19,7 @@ const loginSchema = z.object({
 
 type FormValues = z.infer<typeof loginSchema>
 
-export const LoginForm = ({ onValueSubmit, ...rest }: FormProps<FormValues>) => {
+export const SignInForm = ({ onValueSubmit, ...rest }: FormProps<FormValues>) => {
   const {
     control,
     formState: { errors },
@@ -50,7 +50,7 @@ export const LoginForm = ({ onValueSubmit, ...rest }: FormProps<FormValues>) => 
           {...register('password')}
           errorText={errors.password?.message}
           label={'Password'}
-          type={'password'}
+          password
         />
         <Checkbox checked={value} label={'Remember me'} onCheckedChange={onChange} />
 
