@@ -44,4 +44,8 @@ form {
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  button[type='submit'] {
+    margin-top: 30px;
+  }
 }

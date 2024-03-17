@@ -4,9 +4,12 @@ import { FormProps } from '@/components/auth/formProps'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { TextField } from '@/components/ui/textField'
+import { Typography } from '@/components/ui/typography'
 import { validations } from '@/utils/validations'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
+
+import { FormContainer } from '../formContainer'
 
 const loginSchema = z.object({
   email: validations.email,
@@ -35,16 +38,29 @@ export const LoginForm = ({ onValueSubmit, ...rest }: FormProps<FormValues>) => 
   })
 
   return (
-    <form onSubmit={handleSubmit(onValueSubmit)} {...rest}>
-      <TextField {...register('email')} errorText={errors.email?.message} label={'Email'} />
-      <TextField
-        {...register('password')}
-        errorText={errors.password?.message}
-        label={'Password'}
-        type={'password'}
-      />
-      <Checkbox checked={value} label={'Remember me'} onCheckedChange={onChange} />
-      <Button type={'submit'}>Sign In</Button>
-    </form>
+    <FormContainer
+      footerLink={'/'}
+      footerTitle={"Don't have an account?"}
+      linkTitle={'Sign Up'}
+      title={`Sign In`}
+    >
+      <form onSubmit={handleSubmit(onValueSubmit)} {...rest}>
+        <TextField {...register('email')} errorText={errors.email?.message} label={'Email'} />
+        <TextField
+          {...register('password')}
+          errorText={errors.password?.message}
+          label={'Password'}
+          type={'password'}
+        />
+        <Checkbox checked={value} label={'Remember me'} onCheckedChange={onChange} />
+
+        <Typography align={'right'} variant={'body2'}>
+          Forgot Password?
+        </Typography>
+        <Button className={'authFormButton'} type={'submit'}>
+          Sign In
+        </Button>
+      </form>
+    </FormContainer>
   )
 }

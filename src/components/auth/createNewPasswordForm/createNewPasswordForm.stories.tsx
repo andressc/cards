@@ -2,13 +2,13 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import { Card } from '@/components/ui/card'
 
-import { ForgotPasswordForm } from './forgot-password-form'
+import { CreateNewPasswordForm } from './createNewPasswordForm'
 
 const meta = {
-  component: ForgotPasswordForm,
+  component: CreateNewPasswordForm,
   tags: ['autodocs'],
-  title: 'Auth/ForgotPasswordForm',
-} satisfies Meta<typeof ForgotPasswordForm>
+  title: 'Auth/CreateNewPasswordForm',
+} satisfies Meta<typeof CreateNewPasswordForm>
 
 export default meta
 type Story = StoryObj<typeof meta>
@@ -22,7 +22,7 @@ export const Primary: Story = {
   render: args => {
     return (
       <Card>
-        <ForgotPasswordForm {...args} />
+        <CreateNewPasswordForm {...args} />
       </Card>
     )
   },

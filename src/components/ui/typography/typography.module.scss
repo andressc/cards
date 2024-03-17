@@ -2,6 +2,22 @@
   all: unset;
 }
 
+.secondary {
+  color: rgb(var(--color-light-900-rgb));
+}
+
+.left {
+  text-align: left;
+}
+
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
+
 .body1 {
   font-size: var(--font-size-m);
   font-weight: var(--font-weight-regular);
