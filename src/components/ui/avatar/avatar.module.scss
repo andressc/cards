@@ -1,3 +1,20 @@
+.avatarContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.left {
+  justify-content: flex-start;
+}
+
+.right {
+  justify-content: flex-end;
+}
+
+.center {
+  justify-content: center;
+}
+
 .avatarRoot {
   user-select: none;
 
@@ -6,13 +23,25 @@
   align-items: center;
   justify-content: center;
 
-  width: 36px;
-  height: 36px;
-
   vertical-align: middle;
 
   background-color: var(--color-dark-500);
   border-radius: 100%;
+}
+
+.middle {
+  width: 66px;
+  height: 66px;
+}
+
+.small {
+  width: 36px;
+  height: 36px;
+}
+
+.large {
+  width: 96px;
+  height: 96px;
 }
 
 .avatarImage {
