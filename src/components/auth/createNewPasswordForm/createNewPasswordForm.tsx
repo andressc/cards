@@ -1,6 +1,5 @@
 import { useForm } from 'react-hook-form'
 
-import { FormContainer } from '@/components/auth/formContainer'
 import { FormProps } from '@/components/auth/formProps'
 import { Button } from '@/components/ui/button'
 import { TextField } from '@/components/ui/textField'
@@ -9,23 +8,28 @@ import { validations } from '@/utils/validations'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
+import { AuthContainer } from '../authContainer'
+
 const createNewPasswordSchema = z.object({
   password: validations.min3,
 })
 
-type FormValues = z.infer<typeof createNewPasswordSchema>
+export type CreateNewPasswordFormValues = z.infer<typeof createNewPasswordSchema>
 
-export const CreateNewPasswordForm = ({ onValueSubmit, ...rest }: FormProps<FormValues>) => {
+export const CreateNewPasswordForm = ({
+  onValueSubmit,
+  ...rest
+}: FormProps<CreateNewPasswordFormValues>) => {
   const {
     formState: { errors },
     handleSubmit,
     register,
-  } = useForm<FormValues>({
+  } = useForm<CreateNewPasswordFormValues>({
     resolver: zodResolver(createNewPasswordSchema),
   })
 
   return (
-    <FormContainer title={'Create new password'}>
+    <AuthContainer title={'Create new password'}>
       <form onSubmit={handleSubmit(onValueSubmit)} {...rest}>
         <TextField
           {...register('password')}
@@ -40,6 +44,6 @@ export const CreateNewPasswordForm = ({ onValueSubmit, ...rest }: FormProps<Form
           Create New Password
         </Button>
       </form>
-    </FormContainer>
+    </AuthContainer>
   )
 }

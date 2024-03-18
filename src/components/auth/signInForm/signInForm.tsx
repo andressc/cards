@@ -1,32 +1,34 @@
 import { useController, useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
 
 import { FormProps } from '@/components/auth/formProps'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { TextField } from '@/components/ui/textField'
 import { Typography } from '@/components/ui/typography'
+import { pathRoutes } from '@/router'
 import { validations } from '@/utils/validations'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
-import { FormContainer } from '../formContainer'
+import { AuthContainer } from '../authContainer'
 
-const loginSchema = z.object({
+const signInSchema = z.object({
   email: validations.email,
   password: validations.min3,
   rememberMe: validations.checkbox,
 })
 
-type FormValues = z.infer<typeof loginSchema>
+export type SignInFormValues = z.infer<typeof signInSchema>
 
-export const SignInForm = ({ onValueSubmit, ...rest }: FormProps<FormValues>) => {
+export const SignInForm = ({ onValueSubmit, ...rest }: FormProps<SignInFormValues>) => {
   const {
     control,
     formState: { errors },
     handleSubmit,
     register,
-  } = useForm<FormValues>({
-    resolver: zodResolver(loginSchema),
+  } = useForm<SignInFormValues>({
+    resolver: zodResolver(signInSchema),
   })
 
   const {
@@ -38,8 +40,8 @@ export const SignInForm = ({ onValueSubmit, ...rest }: FormProps<FormValues>) =>
   })
 
   return (
-    <FormContainer
-      footerLink={'/'}
+    <AuthContainer
+      footerLink={pathRoutes.registration}
       footerTitle={"Don't have an account?"}
       linkTitle={'Sign Up'}
       title={`Sign In`}
@@ -54,13 +56,19 @@ export const SignInForm = ({ onValueSubmit, ...rest }: FormProps<FormValues>) =>
         />
         <Checkbox checked={value} label={'Remember me'} onCheckedChange={onChange} />
 
-        <Typography align={'right'} variant={'body2'}>
+        <Typography
+          align={'right'}
+          as={Link}
+          style={{ cursor: 'pointer' }}
+          to={pathRoutes.forgotPassword}
+          variant={'body2'}
+        >
           Forgot Password?
         </Typography>
         <Button className={'authFormButton'} fullWidth type={'submit'}>
           Sign In
         </Button>
       </form>
-    </FormContainer>
+    </AuthContainer>
   )
 }

@@ -3,11 +3,12 @@ import { useForm } from 'react-hook-form'
 import { FormProps } from '@/components/auth/formProps'
 import { Button } from '@/components/ui/button'
 import { TextField } from '@/components/ui/textField'
+import { pathRoutes } from '@/router'
 import { validations } from '@/utils/validations'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
-import { FormContainer } from '../formContainer'
+import { AuthContainer } from '../authContainer'
 
 const signUpSchema = z
   .object({
@@ -20,20 +21,20 @@ const signUpSchema = z
     path: ['confirmPassword'],
   })
 
-type FormValues = z.infer<typeof signUpSchema>
+export type SignUpFormValues = z.infer<typeof signUpSchema>
 
-export const SignUpForm = ({ onValueSubmit, ...rest }: FormProps<FormValues>) => {
+export const SignUpForm = ({ onValueSubmit, ...rest }: FormProps<SignUpFormValues>) => {
   const {
     formState: { errors },
     handleSubmit,
     register,
-  } = useForm<FormValues>({
+  } = useForm<SignUpFormValues>({
     resolver: zodResolver(signUpSchema),
   })
 
   return (
-    <FormContainer
-      footerLink={'/'}
+    <AuthContainer
+      footerLink={pathRoutes.login}
       footerTitle={'Already have an account?'}
       linkTitle={'Sign In'}
       title={'Sign Up'}
@@ -56,6 +57,6 @@ export const SignUpForm = ({ onValueSubmit, ...rest }: FormProps<FormValues>) =>
           Sign Up
         </Button>
       </form>
-    </FormContainer>
+    </AuthContainer>
   )
 }

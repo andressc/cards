@@ -1,32 +1,37 @@
 import { useForm } from 'react-hook-form'
 
-import { FormContainer } from '@/components/auth/formContainer'
 import { FormProps } from '@/components/auth/formProps'
 import { Button } from '@/components/ui/button'
 import { TextField } from '@/components/ui/textField'
 import { Typography } from '@/components/ui/typography'
+import { pathRoutes } from '@/router'
 import { validations } from '@/utils/validations'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
+
+import { AuthContainer } from '../authContainer'
 
 const forgotPasswordSchema = z.object({
   email: validations.email,
 })
 
-type FormValues = z.infer<typeof forgotPasswordSchema>
+export type ForgotPasswordFormValues = z.infer<typeof forgotPasswordSchema>
 
-export const ForgotPasswordForm = ({ onValueSubmit, ...rest }: FormProps<FormValues>) => {
+export const ForgotPasswordForm = ({
+  onValueSubmit,
+  ...rest
+}: FormProps<ForgotPasswordFormValues>) => {
   const {
     formState: { errors },
     handleSubmit,
     register,
-  } = useForm<FormValues>({
+  } = useForm<ForgotPasswordFormValues>({
     resolver: zodResolver(forgotPasswordSchema),
   })
 
   return (
-    <FormContainer
-      footerLink={'/'}
+    <AuthContainer
+      footerLink={pathRoutes.login}
       footerTitle={'Did you remember your password?'}
       linkTitle={'Try logging in'}
       title={'Forgot your password?'}
@@ -40,6 +45,6 @@ export const ForgotPasswordForm = ({ onValueSubmit, ...rest }: FormProps<FormVal
           Send Instructions
         </Button>
       </form>
-    </FormContainer>
+    </AuthContainer>
   )
 }

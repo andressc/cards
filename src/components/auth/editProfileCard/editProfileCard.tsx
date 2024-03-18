@@ -6,11 +6,11 @@ import { Button } from '@/components/ui/button'
 import { Typography } from '@/components/ui/typography'
 
 import avatar from '../../../assets/avatar.jpeg'
-import { FormContainer } from '../formContainer'
+import { AuthContainer } from '../authContainer'
 
 export const EditProfileCard = ({ ...rest }: ComponentProps<'div'>) => {
   return (
-    <FormContainer align={'center'} {...rest} title={'Personal Information'}>
+    <AuthContainer align={'center'} {...rest} title={'Personal Information'}>
       <Avatar alt={'Check Email'} size={'large'} src={avatar} />
       <Typography variant={'h2'}>Ivan</Typography>
       <Typography color={'secondary'} variant={'body2'}>
@@ -23,6 +23,6 @@ export const EditProfileCard = ({ ...rest }: ComponentProps<'div'>) => {
       >
         Logout
       </Button>
-    </FormContainer>
+    </AuthContainer>
   )
 }

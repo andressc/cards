@@ -1,9 +1,10 @@
 import { ComponentProps } from 'react'
+import { Link } from 'react-router-dom'
 
 import { Typography } from '@/components/ui/typography'
 import cn from 'classnames'
 
-import s from './formContainer.module.scss'
+import s from './authContainer.module.scss'
 
 export type FormContainerProps = {
   align?: '' | 'center' | 'left' | 'right'
@@ -13,7 +14,7 @@ export type FormContainerProps = {
   title?: string
 } & ComponentProps<'div'>
 
-export const FormContainer = ({
+export const AuthContainer = ({
   align = '',
   children,
   className,
@@ -24,19 +25,15 @@ export const FormContainer = ({
   ...rest
 }: FormContainerProps) => {
   return (
-    <div className={cn(s.formContainer, s[align], className)} {...rest}>
-      <Typography align={'center'} className={s.formTitle} variant={'h1'}>
+    <div className={cn(s.authContainer, s[align], className)} {...rest}>
+      <Typography align={'center'} variant={'h1'}>
         {title}
       </Typography>
       {children}
-      <div className={cn(s.formFooter, className)} {...rest}>
-        {footerTitle && (
-          <Typography className={s.formFooterTitle} variant={'body2'}>
-            {footerTitle}
-          </Typography>
-        )}
+      <div className={cn(s.authFooter, className)} {...rest}>
+        {footerTitle && <Typography variant={'body2'}>{footerTitle}</Typography>}
         {footerLink && (
-          <Typography as={'a'} className={s.formFooterTitle} variant={'link1'}>
+          <Typography as={Link} to={footerLink} variant={'link1'}>
             {linkTitle}
           </Typography>
         )}

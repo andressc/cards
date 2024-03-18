@@ -6,17 +6,48 @@ import {
   createBrowserRouter,
 } from 'react-router-dom'
 
+import { CheckEmail } from '@/pages/auth/checkEmail'
+import { CreateNewPassword } from '@/pages/auth/createNewPassword'
+import { ForgotPassword } from '@/pages/auth/forgotPassword'
+import { SignIn } from '@/pages/auth/signIn'
+import { SignUp } from '@/pages/auth/signUp'
+
+export const pathRoutes = {
+  checkEmail: '/check-email',
+  createNewPassword: '/create-new-password',
+  forgotPassword: '/forgot-password',
+  home: '/',
+  login: '/login',
+  registration: '/registration',
+}
+
 const publicRoutes: RouteObject[] = [
   {
-    element: <div>login</div>,
-    path: '/login',
+    element: <SignIn />,
+    path: pathRoutes.login,
+  },
+  {
+    element: <SignUp />,
+    path: pathRoutes.registration,
+  },
+  {
+    element: <ForgotPassword />,
+    path: pathRoutes.forgotPassword,
+  },
+  {
+    element: <CheckEmail />,
+    path: pathRoutes.checkEmail,
+  },
+  {
+    element: <CreateNewPassword />,
+    path: pathRoutes.createNewPassword,
   },
 ]
 
 const privateRoutes: RouteObject[] = [
   {
     element: <div>hello</div>,
-    path: '/',
+    path: pathRoutes.home,
   },
 ]
 

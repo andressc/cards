@@ -1,7 +1,6 @@
 import { useForm } from 'react-hook-form'
 
 import avatar from '@/assets/avatar.jpeg'
-import { FormContainer } from '@/components/auth/formContainer'
 import { FormProps } from '@/components/auth/formProps'
 import { Avatar } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
@@ -9,6 +8,8 @@ import { TextField } from '@/components/ui/textField'
 import { validations } from '@/utils/validations'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
+
+import { AuthContainer } from '../authContainer'
 
 const createNewPasswordSchema = z.object({
   nickName: validations.min3,
@@ -26,7 +27,7 @@ export const EditProfileForm = ({ onValueSubmit, ...rest }: FormProps<FormValues
   })
 
   return (
-    <FormContainer title={'Personal Information'}>
+    <AuthContainer title={'Personal Information'}>
       <Avatar align={'center'} alt={'Check Email'} size={'large'} src={avatar} />
       <form onSubmit={handleSubmit(onValueSubmit)} {...rest}>
         <TextField
@@ -38,6 +39,6 @@ export const EditProfileForm = ({ onValueSubmit, ...rest }: FormProps<FormValues
           Save Changes
         </Button>
       </form>
-    </FormContainer>
+    </AuthContainer>
   )
 }
