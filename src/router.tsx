@@ -11,6 +11,7 @@ import { CreateNewPassword } from '@/pages/auth/createNewPassword'
 import { ForgotPassword } from '@/pages/auth/forgotPassword'
 import { SignIn } from '@/pages/auth/signIn'
 import { SignUp } from '@/pages/auth/signUp'
+import { useGetDecksQuery } from '@/services/decks/decks.service'
 
 export const pathRoutes = {
   checkEmail: '/check-email',
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
 ])
 
 export const Router = () => {
+  const result = useGetDecksQuery()
+
+  console.log(result)
+
   return <RouterProvider router={router} />
 }
 
