@@ -4,10 +4,10 @@ import TrashOutlinedIcon from '@/assets/icons/components/TrashOutlinedIcon'
 import { Button } from '@/components/ui/button'
 import { Pack } from '@/components/ui/pack'
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@/components/ui/table'
-import { DecksItems } from '@/pages/decks/decks.types'
+import { DecksItem } from '@/pages/decks/decks.types'
 
 type Props = {
-  decks?: DecksItems[]
+  decks?: DecksItem[]
   onDeleteClick?: (id: string) => void
   onEditClick?: (id: string) => void
 }

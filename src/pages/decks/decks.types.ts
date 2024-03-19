@@ -1,12 +1,12 @@
 export type Decks = {
-  items: DecksItems[]
+  items: DecksItem[]
   pagination: DecksPagination
 }
 export type DecksItemsAuthor = {
   id: string
   name: string
 }
-export type DecksItems = {
+export type DecksItem = {
   author: DecksItemsAuthor
   cardsCount: number
   cover: string
@@ -43,4 +43,10 @@ export type DecksParams = {
     | 'updated-asc'
     | 'updated-desc'
     | null
+}
+
+export type AddDeck = {
+  cover?: string
+  isPrivate: boolean
+  name: string
 }

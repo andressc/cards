@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form'
+import { useController, useForm } from 'react-hook-form'
 
 import ImageOutlinedIcon from '@/assets/icons/components/ImageOutlinedIcon'
 import { FormProps } from '@/components/auth/formProps'
@@ -11,18 +11,32 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
 const addDeckSchema = z.object({
+  isPrivate: validations.checkbox,
   name: validations.min3,
 })
 
-type FormValues = z.infer<typeof addDeckSchema>
+export type AddDeckFormValues = z.infer<typeof addDeckSchema>
 
-export const AddDeckForm = ({ onCloseModal, onValueSubmit, ...rest }: FormProps<FormValues>) => {
+export const AddDeckForm = ({
+  onCloseModal,
+  onValueSubmit,
+  ...rest
+}: FormProps<AddDeckFormValues>) => {
   const {
+    control,
     formState: { errors },
     handleSubmit,
     register,
-  } = useForm<FormValues>({
+  } = useForm<AddDeckFormValues>({
     resolver: zodResolver(addDeckSchema),
+  })
+
+  const {
+    field: { onChange, value },
+  } = useController({
+    control,
+    defaultValue: false,
+    name: 'isPrivate',
   })
 
   return (
@@ -32,7 +46,7 @@ export const AddDeckForm = ({ onCloseModal, onValueSubmit, ...rest }: FormProps<
         <Button fullWidth icon={<ImageOutlinedIcon size={16} />} variant={'secondary'}>
           Upload Image
         </Button>
-        <Checkbox checked onCheckedChange={() => {}} />
+        <Checkbox checked={value} onCheckedChange={onChange} />
         <div style={{ alignItems: 'flex-end', display: 'flex', justifyContent: 'space-between' }}>
           <Button onClick={onCloseModal} type={'button'} variant={'secondary'}>
             Cancel

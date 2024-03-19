@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from 'react'
 
 import TrashOutlinedIcon from '@/assets/icons/components/TrashOutlinedIcon'
-import { AddDeckForm } from '@/components/decks/addDeckForm'
+import { AddDeckForm, AddDeckFormValues } from '@/components/decks/addDeckForm'
 import { Button } from '@/components/ui/button'
 import { Modal } from '@/components/ui/modal/modal'
 import { Pagination } from '@/components/ui/pagination'
@@ -10,7 +10,11 @@ import { Tabs } from '@/components/ui/tabs'
 import { TextField } from '@/components/ui/textField'
 import { Typography } from '@/components/ui/typography'
 import { DecksTable } from '@/pages/decks/decksTable/decksTable'
-import { useGetDecksQuery } from '@/services/decks/decks.service'
+import {
+  useCreateDeckMutation,
+  useDeleteDeckMutation,
+  useGetDecksQuery,
+} from '@/services/decks/decks.service'
 
 import s from './decksPage.module.scss'
 
@@ -52,6 +56,9 @@ export const DecksPage = () => {
     name: searchValue,
   })
 
+  const [createDeck] = useCreateDeckMutation()
+  const [deleteDeck] = useDeleteDeckMutation()
+
   if (isLoading) {
     return <div>Loading</div>
   }
@@ -64,12 +71,14 @@ export const DecksPage = () => {
     setSearchValue(e.currentTarget.value)
   }
 
+  const addDecksHandle = (formValues: AddDeckFormValues) => {
+    createDeck(formValues)
+    setIsOpenAddDeck(false)
+  }
+
   const modal = (
     <Modal onClose={() => setIsOpenAddDeck(false)} open={isOpenAddDeck} title={'Add New Deck'}>
-      <AddDeckForm
-        onCloseModal={() => setIsOpenAddDeck(false)}
-        onValueSubmit={value => console.log(value)}
-      />
+      <AddDeckForm onCloseModal={() => setIsOpenAddDeck(false)} onValueSubmit={addDecksHandle} />
     </Modal>
   )
 
@@ -118,7 +127,7 @@ export const DecksPage = () => {
           </Button>
         </div>
         <div className={s.deckContainer}>
-          {<DecksTable decks={data?.items} />}
+          {<DecksTable decks={data?.items} onDeleteClick={id => deleteDeck({ id })} />}
           <Pagination
             count={data?.pagination ? data.pagination.totalPages : 1}
             onChange={setCurrentPage}
