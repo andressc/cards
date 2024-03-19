@@ -39,7 +39,7 @@ export const DecksPage = () => {
   const [sliderValue, setSliderValue] = useState(defaultSliderValue)
   const [tabsValue, setTabsValue] = useState(defaultTabsValue)
   const [searchValue, setSearchValue] = useState(defaultSearchValue)
-  const [isOpenAddDeck, setIsOpenAddDeck] = useState(false)
+  const [isOpenCreateDeck, setIsOpenCreateDeck] = useState(false)
 
   const clearFilter = () => {
     setSearchValue(defaultSearchValue)
@@ -59,6 +59,43 @@ export const DecksPage = () => {
   const [createDeck] = useCreateDeckMutation()
   const [deleteDeck] = useDeleteDeckMutation()
 
+  const searchHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.currentTarget.value)
+  }
+
+  const clearSearchHandler = () => {
+    setSearchValue('')
+  }
+
+  const createDeckHandler = (formValues: AddDeckFormValues) => {
+    createDeck(formValues)
+    closeModalCreateDeckHandler()
+  }
+
+  const closeModalCreateDeckHandler = () => {
+    setIsOpenCreateDeck(false)
+  }
+
+  const openModalCreateDeckHandler = () => {
+    setIsOpenCreateDeck(true)
+  }
+
+  const setSliderValueHandler = (newValue: number[]) => {
+    setSliderValue(newValue)
+  }
+
+  const setTabsValueHandler = (value: string) => setTabsValue(value)
+
+  const setPerPageHandler = (itemPerPage: number | string) => setPerPage(+itemPerPage)
+
+  const deleteDeckHandler = (id: string) => deleteDeck({ id })
+
+  const modal = (
+    <Modal onClose={closeModalCreateDeckHandler} open={isOpenCreateDeck} title={'Add New Deck'}>
+      <AddDeckForm onCloseModal={closeModalCreateDeckHandler} onValueSubmit={createDeckHandler} />
+    </Modal>
+  )
+
   if (isLoading) {
     return <div>Loading</div>
   }
@@ -66,21 +103,6 @@ export const DecksPage = () => {
   if (isError) {
     return <div>{JSON.stringify(error)}</div>
   }
-
-  const searchHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.currentTarget.value)
-  }
-
-  const addDecksHandle = (formValues: AddDeckFormValues) => {
-    createDeck(formValues)
-    setIsOpenAddDeck(false)
-  }
-
-  const modal = (
-    <Modal onClose={() => setIsOpenAddDeck(false)} open={isOpenAddDeck} title={'Add New Deck'}>
-      <AddDeckForm onCloseModal={() => setIsOpenAddDeck(false)} onValueSubmit={addDecksHandle} />
-    </Modal>
-  )
 
   return (
     <div
@@ -93,29 +115,25 @@ export const DecksPage = () => {
       {modal}
       <div className={s.controlsContainer}>
         <Typography variant={'h1'}>Decks list</Typography>
-        <Button onClick={() => setIsOpenAddDeck(true)}>Add new deck</Button>
+        <Button onClick={openModalCreateDeckHandler}>Add new deck</Button>
       </div>
       <div className={s.container}>
         <div className={s.controlsContainer}>
           <TextField
             onChange={searchHandler}
-            onClearClick={() => {
-              setSearchValue('')
-            }}
+            onClearClick={clearSearchHandler}
             search
             value={searchValue}
           />
           <Tabs
             label={'Show decks cards'}
-            onValueChange={(value: string) => setTabsValue(value)}
+            onValueChange={setTabsValueHandler}
             tabs={tabs}
             value={tabsValue}
           ></Tabs>
           <Slider
             label={'Number of cards'}
-            onValueChange={(newValue: number[]) => {
-              setSliderValue(newValue)
-            }}
+            onValueChange={setSliderValueHandler}
             value={sliderValue}
           />
           <Button
@@ -127,11 +145,11 @@ export const DecksPage = () => {
           </Button>
         </div>
         <div className={s.deckContainer}>
-          {<DecksTable decks={data?.items} onDeleteClick={id => deleteDeck({ id })} />}
+          <DecksTable decks={data?.items} onDeleteClick={deleteDeckHandler} />
           <Pagination
             count={data?.pagination ? data.pagination.totalPages : 1}
             onChange={setCurrentPage}
-            onPerPageChange={itemPerPage => setPerPage(+itemPerPage)}
+            onPerPageChange={setPerPageHandler}
             page={currentPage}
             perPage={data?.pagination ? data?.pagination.itemsPerPage : 1}
             perPageOptions={[10, 20, 30, 50, 100]}
