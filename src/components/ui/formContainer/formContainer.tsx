@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { Typography } from '@/components/ui/typography'
 import cn from 'classnames'
 
-import s from './authContainer.module.scss'
+import s from './formContainer.module.scss'
 
 export type FormContainerProps = {
   align?: '' | 'center' | 'left' | 'right'
@@ -14,7 +14,7 @@ export type FormContainerProps = {
   title?: string
 } & ComponentProps<'div'>
 
-export const AuthContainer = ({
+export const FormContainer = ({
   align = '',
   children,
   className,
@@ -26,9 +26,11 @@ export const AuthContainer = ({
 }: FormContainerProps) => {
   return (
     <div className={cn(s.authContainer, s[align], className)} {...rest}>
-      <Typography align={'center'} variant={'h1'}>
-        {title}
-      </Typography>
+      {title && (
+        <Typography align={'center'} variant={'h1'}>
+          {title}
+        </Typography>
+      )}
       {children}
       <div className={cn(s.authFooter, className)} {...rest}>
         {footerTitle && <Typography variant={'body2'}>{footerTitle}</Typography>}

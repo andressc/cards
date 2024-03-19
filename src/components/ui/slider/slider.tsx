@@ -9,6 +9,7 @@ export type SliderProps = {
   defaultValue?: number[]
   disabled?: boolean
   id?: string
+  label?: string
   max?: number
   min?: number
   minStepsBetweenThumbs?: number
@@ -23,6 +24,7 @@ export const Slider = ({
   defaultValue = [25, 75],
   disabled,
   id,
+  label,
   max = 100,
   min = 0,
   minStepsBetweenThumbs,
@@ -33,38 +35,41 @@ export const Slider = ({
 }: SliderProps) => {
   return (
     <div className={cn(s.sliderContainer, className)}>
-      {value && (
-        <Typography as={'div'} className={s.sliderNumber} variant={'body1'}>
-          {value[0]}
-        </Typography>
-      )}
+      {label && <Typography variant={'body2'}>{label}</Typography>}
+      <div className={cn(s.sliderItemContainer)}>
+        {value && (
+          <Typography as={'div'} className={s.sliderNumber} variant={'body1'}>
+            {value[0]}
+          </Typography>
+        )}
 
-      <div>
-        <SliderRadix.Root
-          className={s.sliderRoot}
-          defaultValue={defaultValue}
-          disabled={disabled}
-          id={id}
-          max={max}
-          min={min}
-          minStepsBetweenThumbs={minStepsBetweenThumbs}
-          onValueChange={onValueChange}
-          onValueCommit={onValueCommit}
-          step={step}
-          value={value}
-        >
-          <SliderRadix.Track className={s.sliderTrack}>
-            <SliderRadix.Range className={s.sliderRange} />
-          </SliderRadix.Track>
-          <SliderRadix.Thumb aria-label={'Volume'} className={s.sliderThumb} />
-          <SliderRadix.Thumb aria-label={'Volume'} className={s.sliderThumb} />
-        </SliderRadix.Root>
+        <div>
+          <SliderRadix.Root
+            className={s.sliderRoot}
+            defaultValue={defaultValue}
+            disabled={disabled}
+            id={id}
+            max={max}
+            min={min}
+            minStepsBetweenThumbs={minStepsBetweenThumbs}
+            onValueChange={onValueChange}
+            onValueCommit={onValueCommit}
+            step={step}
+            value={value}
+          >
+            <SliderRadix.Track className={s.sliderTrack}>
+              <SliderRadix.Range className={s.sliderRange} />
+            </SliderRadix.Track>
+            <SliderRadix.Thumb aria-label={'Volume'} className={s.sliderThumb} />
+            <SliderRadix.Thumb aria-label={'Volume'} className={s.sliderThumb} />
+          </SliderRadix.Root>
+        </div>
+        {value && (
+          <Typography as={'div'} className={s.sliderNumber} variant={'body1'}>
+            {value[1]}
+          </Typography>
+        )}
       </div>
-      {value && (
-        <Typography as={'div'} className={s.sliderNumber} variant={'body1'}>
-          {value[1]}
-        </Typography>
-      )}
     </div>
   )
 }

@@ -4,14 +4,13 @@ import { Link } from 'react-router-dom'
 import { FormProps } from '@/components/auth/formProps'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
+import { FormContainer } from '@/components/ui/formContainer'
 import { TextField } from '@/components/ui/textField'
 import { Typography } from '@/components/ui/typography'
 import { pathRoutes } from '@/router'
 import { validations } from '@/utils/validations'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-
-import { AuthContainer } from '../authContainer'
 
 const signInSchema = z.object({
   email: validations.email,
@@ -40,7 +39,7 @@ export const SignInForm = ({ onValueSubmit, ...rest }: FormProps<SignInFormValue
   })
 
   return (
-    <AuthContainer
+    <FormContainer
       footerLink={pathRoutes.registration}
       footerTitle={"Don't have an account?"}
       linkTitle={'Sign Up'}
@@ -69,6 +68,6 @@ export const SignInForm = ({ onValueSubmit, ...rest }: FormProps<SignInFormValue
           Sign In
         </Button>
       </form>
-    </AuthContainer>
+    </FormContainer>
   )
 }

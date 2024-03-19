@@ -2,13 +2,12 @@ import { useForm } from 'react-hook-form'
 
 import { FormProps } from '@/components/auth/formProps'
 import { Button } from '@/components/ui/button'
+import { FormContainer } from '@/components/ui/formContainer'
 import { TextField } from '@/components/ui/textField'
 import { pathRoutes } from '@/router'
 import { validations } from '@/utils/validations'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-
-import { AuthContainer } from '../authContainer'
 
 const signUpSchema = z
   .object({
@@ -33,7 +32,7 @@ export const SignUpForm = ({ onValueSubmit, ...rest }: FormProps<SignUpFormValue
   })
 
   return (
-    <AuthContainer
+    <FormContainer
       footerLink={pathRoutes.login}
       footerTitle={'Already have an account?'}
       linkTitle={'Sign In'}
@@ -57,6 +56,6 @@ export const SignUpForm = ({ onValueSubmit, ...rest }: FormProps<SignUpFormValue
           Sign Up
         </Button>
       </form>
-    </AuthContainer>
+    </FormContainer>
   )
 }

@@ -11,7 +11,7 @@ import { CreateNewPassword } from '@/pages/auth/createNewPassword'
 import { ForgotPassword } from '@/pages/auth/forgotPassword'
 import { SignIn } from '@/pages/auth/signIn'
 import { SignUp } from '@/pages/auth/signUp'
-import { useGetDecksQuery } from '@/services/decks/decks.service'
+import { DecksPage } from '@/pages/decks/decksPage/decksPage'
 
 export const pathRoutes = {
   checkEmail: '/check-email',
@@ -47,7 +47,7 @@ const publicRoutes: RouteObject[] = [
 
 const privateRoutes: RouteObject[] = [
   {
-    element: <div>hello</div>,
+    element: <DecksPage />,
     path: pathRoutes.home,
   },
 ]
@@ -61,15 +61,11 @@ const router = createBrowserRouter([
 ])
 
 export const Router = () => {
-  const result = useGetDecksQuery()
-
-  console.log(result)
-
   return <RouterProvider router={router} />
 }
 
 function PrivateRoutes() {
-  const isAuthenticated = false
+  const isAuthenticated = true
 
   return isAuthenticated ? <Outlet /> : <Navigate to={'/login'} />
 }

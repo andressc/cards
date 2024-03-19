@@ -1,13 +1,14 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { EditProfileForm } from '@/components/auth/editProfileForm/editProfileForm'
 import { Card } from '@/components/ui/card'
 
+import { AddDeckForm } from './addDeckForm'
+
 const meta = {
-  component: EditProfileForm,
+  component: AddDeckForm,
   tags: ['autodocs'],
-  title: 'Auth/EditProfileForm',
-} satisfies Meta<typeof EditProfileForm>
+  title: 'Auth/AddDeckForm',
+} satisfies Meta<typeof AddDeckForm>
 
 export default meta
 type Story = StoryObj<typeof meta>
@@ -21,7 +22,7 @@ export const Default: Story = {
   render: args => {
     return (
       <Card>
-        <EditProfileForm {...args} />
+        <AddDeckForm {...args} />
       </Card>
     )
   },

@@ -1,5 +1,12 @@
 .sliderContainer {
   display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+}
+
+.sliderItemContainer {
+  display: flex;
   gap: 12px;
   align-items: center;
 }

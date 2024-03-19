@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+.controlsContainer {
+  display: flex;
+  gap: 25px;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.deckContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}

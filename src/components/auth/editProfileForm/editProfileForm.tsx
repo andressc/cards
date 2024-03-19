@@ -4,12 +4,11 @@ import avatar from '@/assets/avatar.jpeg'
 import { FormProps } from '@/components/auth/formProps'
 import { Avatar } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
+import { FormContainer } from '@/components/ui/formContainer'
 import { TextField } from '@/components/ui/textField'
 import { validations } from '@/utils/validations'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-
-import { AuthContainer } from '../authContainer'
 
 const createNewPasswordSchema = z.object({
   nickName: validations.min3,
@@ -27,7 +26,7 @@ export const EditProfileForm = ({ onValueSubmit, ...rest }: FormProps<FormValues
   })
 
   return (
-    <AuthContainer title={'Personal Information'}>
+    <FormContainer title={'Personal Information'}>
       <Avatar align={'center'} alt={'Check Email'} size={'large'} src={avatar} />
       <form onSubmit={handleSubmit(onValueSubmit)} {...rest}>
         <TextField
@@ -39,6 +38,6 @@ export const EditProfileForm = ({ onValueSubmit, ...rest }: FormProps<FormValues
           Save Changes
         </Button>
       </form>
-    </AuthContainer>
+    </FormContainer>
   )
 }

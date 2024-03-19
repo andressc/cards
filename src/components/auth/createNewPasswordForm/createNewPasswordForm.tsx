@@ -2,13 +2,12 @@ import { useForm } from 'react-hook-form'
 
 import { FormProps } from '@/components/auth/formProps'
 import { Button } from '@/components/ui/button'
+import { FormContainer } from '@/components/ui/formContainer'
 import { TextField } from '@/components/ui/textField'
 import { Typography } from '@/components/ui/typography'
 import { validations } from '@/utils/validations'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-
-import { AuthContainer } from '../authContainer'
 
 const createNewPasswordSchema = z.object({
   password: validations.min3,
@@ -29,7 +28,7 @@ export const CreateNewPasswordForm = ({
   })
 
   return (
-    <AuthContainer title={'Create new password'}>
+    <FormContainer title={'Create new password'}>
       <form onSubmit={handleSubmit(onValueSubmit)} {...rest}>
         <TextField
           {...register('password')}
@@ -44,6 +43,6 @@ export const CreateNewPasswordForm = ({
           Create New Password
         </Button>
       </form>
-    </AuthContainer>
+    </FormContainer>
   )
 }

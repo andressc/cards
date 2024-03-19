@@ -16,6 +16,7 @@ type TabsProps = {
   children?: ReactNode
   classname?: string
   defaultValue?: string
+  label?: string
   onValueChange?: (value: string) => void
   tabs: TabType[]
   value?: string
@@ -25,6 +26,7 @@ export const Tabs = ({
   children,
   classname,
   defaultValue,
+  label,
   onValueChange,
   tabs,
   value,
@@ -35,6 +37,7 @@ export const Tabs = ({
     onValueChange={onValueChange}
     value={value}
   >
+    {label && <Typography variant={'body2'}>{label}</Typography>}
     <TabsRadix.List className={s.tabsList}>
       {tabs.map(tab => (
         <TabsRadix.Trigger

@@ -44,7 +44,7 @@ const commonArgs = {
       />
       <TextField label={'input'} />
       <TextField label={'input'} />
-      <Checkbox checked label={'Check-box'} onChange={() => {}} />
+      <Checkbox checked label={'Check-box'} onCheckedChange={() => {}} />
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <Button variant={'secondary'}>Button secondary</Button>
         <Button variant={'primary'}>Button primary</Button>

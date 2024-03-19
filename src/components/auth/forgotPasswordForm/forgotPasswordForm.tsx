@@ -2,14 +2,13 @@ import { useForm } from 'react-hook-form'
 
 import { FormProps } from '@/components/auth/formProps'
 import { Button } from '@/components/ui/button'
+import { FormContainer } from '@/components/ui/formContainer'
 import { TextField } from '@/components/ui/textField'
 import { Typography } from '@/components/ui/typography'
 import { pathRoutes } from '@/router'
 import { validations } from '@/utils/validations'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-
-import { AuthContainer } from '../authContainer'
 
 const forgotPasswordSchema = z.object({
   email: validations.email,
@@ -30,7 +29,7 @@ export const ForgotPasswordForm = ({
   })
 
   return (
-    <AuthContainer
+    <FormContainer
       footerLink={pathRoutes.login}
       footerTitle={'Did you remember your password?'}
       linkTitle={'Try logging in'}
@@ -45,6 +44,6 @@ export const ForgotPasswordForm = ({
           Send Instructions
         </Button>
       </form>
-    </AuthContainer>
+    </FormContainer>
   )
 }

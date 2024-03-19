@@ -11,7 +11,7 @@ type ImageCellProps = {
 export const Pack = ({ children, className, image, ...rest }: ImageCellProps) => {
   return (
     <div className={cn(s.packContainer, className)} {...rest}>
-      <img alt={'image'} src={image} />
+      {image && <img alt={'image'} src={image} />}
       <span>{children}</span>
     </div>
   )
