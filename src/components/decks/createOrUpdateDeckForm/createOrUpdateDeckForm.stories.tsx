@@ -18,6 +18,7 @@ export const Default: Story = {
     onValueSubmit: data => {
       console.log(data)
     },
+    submitButtonTitle: 'Submit',
   },
   render: args => {
     return (

@@ -50,10 +50,15 @@ export const CreateOrUpdateDeckForm = ({
           defaultValue={defaultValues?.name}
           errorText={errors.name?.message}
         />
-        <Button fullWidth icon={<ImageOutlinedIcon size={16} />} variant={'secondary'}>
+        <Button
+          fullWidth
+          icon={<ImageOutlinedIcon size={16} />}
+          type={'button'}
+          variant={'secondary'}
+        >
           Upload Image
         </Button>
-        <Checkbox checked={value} onCheckedChange={onChange} />
+        <Checkbox checked={value} label={'Private pack'} onCheckedChange={onChange} />
         <div style={{ alignItems: 'flex-end', display: 'flex', justifyContent: 'space-between' }}>
           <Button onClick={onCloseModal} type={'button'} variant={'secondary'}>
             Cancel
