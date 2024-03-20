@@ -2,13 +2,13 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import { Card } from '@/components/ui/card'
 
-import { AddDeckForm } from './addDeckForm'
+import { CreateOrUpdateDeckForm } from './createOrUpdateDeckForm'
 
 const meta = {
-  component: AddDeckForm,
+  component: CreateOrUpdateDeckForm,
   tags: ['autodocs'],
-  title: 'Auth/AddDeckForm',
-} satisfies Meta<typeof AddDeckForm>
+  title: 'Decks/CreateOrUpdateDeckForm',
+} satisfies Meta<typeof CreateOrUpdateDeckForm>
 
 export default meta
 type Story = StoryObj<typeof meta>
@@ -22,7 +22,7 @@ export const Default: Story = {
   render: args => {
     return (
       <Card>
-        <AddDeckForm {...args} />
+        <CreateOrUpdateDeckForm {...args} />
       </Card>
     )
   },

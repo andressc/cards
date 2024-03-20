@@ -1,7 +1,10 @@
 import { ChangeEvent, useState } from 'react'
 
 import TrashOutlinedIcon from '@/assets/icons/components/TrashOutlinedIcon'
-import { AddDeckForm, AddDeckFormValues } from '@/components/decks/addDeckForm'
+import {
+  CreateOrUpdateDeckForm,
+  CreateOrUpdateDeckFormValues,
+} from '@/components/decks/createOrUpdateDeckForm'
 import { Button } from '@/components/ui/button'
 import { Modal } from '@/components/ui/modal/modal'
 import { Pagination } from '@/components/ui/pagination'
@@ -14,6 +17,7 @@ import {
   useCreateDeckMutation,
   useDeleteDeckMutation,
   useGetDecksQuery,
+  useUpdateDeckMutation,
 } from '@/services/decks/decks.service'
 
 import s from './decksPage.module.scss'
@@ -40,6 +44,8 @@ export const DecksPage = () => {
   const [tabsValue, setTabsValue] = useState(defaultTabsValue)
   const [searchValue, setSearchValue] = useState(defaultSearchValue)
   const [isOpenCreateDeck, setIsOpenCreateDeck] = useState(false)
+  const [isOpenUpdateDeck, setIsOpenUpdateDeck] = useState(false)
+  const [updateDeckId, setUpdateDeckId] = useState('')
 
   const clearFilter = () => {
     setSearchValue(defaultSearchValue)
@@ -58,6 +64,7 @@ export const DecksPage = () => {
 
   const [createDeck] = useCreateDeckMutation()
   const [deleteDeck] = useDeleteDeckMutation()
+  const [updateDeck] = useUpdateDeckMutation()
 
   const searchHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.currentTarget.value)
@@ -67,17 +74,28 @@ export const DecksPage = () => {
     setSearchValue('')
   }
 
-  const createDeckHandler = (formValues: AddDeckFormValues) => {
+  const createDeckHandler = (formValues: CreateOrUpdateDeckFormValues) => {
     createDeck(formValues)
-    closeModalCreateDeckHandler()
+    closeModalsHandler()
   }
 
-  const closeModalCreateDeckHandler = () => {
+  const updateDeckHandler = (formValues: CreateOrUpdateDeckFormValues) => {
+    updateDeck({ id: updateDeckId, ...formValues })
+    closeModalsHandler()
+  }
+
+  const closeModalsHandler = () => {
     setIsOpenCreateDeck(false)
+    setIsOpenUpdateDeck(false)
   }
 
   const openModalCreateDeckHandler = () => {
     setIsOpenCreateDeck(true)
+  }
+
+  const openModalUpdateDeckHandler = (id: string) => {
+    setUpdateDeckId(id)
+    setIsOpenUpdateDeck(true)
   }
 
   const setSliderValueHandler = (newValue: number[]) => {
@@ -90,9 +108,24 @@ export const DecksPage = () => {
 
   const deleteDeckHandler = (id: string) => deleteDeck({ id })
 
-  const modal = (
-    <Modal onClose={closeModalCreateDeckHandler} open={isOpenCreateDeck} title={'Add New Deck'}>
-      <AddDeckForm onCloseModal={closeModalCreateDeckHandler} onValueSubmit={createDeckHandler} />
+  const createDeckModal = (
+    <Modal onClose={closeModalsHandler} open={isOpenCreateDeck} title={'Add New Deck'}>
+      <CreateOrUpdateDeckForm
+        onCloseModal={closeModalsHandler}
+        onValueSubmit={createDeckHandler}
+        submitButtonTitle={'Add New Pack'}
+      />
+    </Modal>
+  )
+
+  const updateDeckModal = (
+    <Modal onClose={closeModalsHandler} open={isOpenUpdateDeck} title={'Update Deck'}>
+      <CreateOrUpdateDeckForm
+        defaultValues={data?.items.find(item => item.id === updateDeckId)}
+        onCloseModal={closeModalsHandler}
+        onValueSubmit={updateDeckHandler}
+        submitButtonTitle={'Update Pack'}
+      />
     </Modal>
   )
 
@@ -112,7 +145,8 @@ export const DecksPage = () => {
         width: '1000px',
       }}
     >
-      {modal}
+      {createDeckModal}
+      {updateDeckModal}
       <div className={s.controlsContainer}>
         <Typography variant={'h1'}>Decks list</Typography>
         <Button onClick={openModalCreateDeckHandler}>Add new deck</Button>
@@ -145,7 +179,11 @@ export const DecksPage = () => {
           </Button>
         </div>
         <div className={s.deckContainer}>
-          <DecksTable decks={data?.items} onDeleteClick={deleteDeckHandler} />
+          <DecksTable
+            decks={data?.items}
+            onDeleteClick={deleteDeckHandler}
+            onEditClick={openModalUpdateDeckHandler}
+          />
           <Pagination
             count={data?.pagination ? data.pagination.totalPages : 1}
             onChange={setCurrentPage}

@@ -10,39 +10,46 @@ import { validations } from '@/utils/validations'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
-const addDeckSchema = z.object({
+const createOrUpdateDeckSchema = z.object({
   isPrivate: validations.checkbox,
   name: validations.min3,
 })
 
-export type AddDeckFormValues = z.infer<typeof addDeckSchema>
+export type CreateOrUpdateDeckFormValues = z.infer<typeof createOrUpdateDeckSchema>
 
-export const AddDeckForm = ({
+export const CreateOrUpdateDeckForm = ({
+  defaultValues,
   onCloseModal,
   onValueSubmit,
+  submitButtonTitle,
   ...rest
-}: FormProps<AddDeckFormValues>) => {
+}: FormProps<CreateOrUpdateDeckFormValues>) => {
   const {
     control,
     formState: { errors },
     handleSubmit,
     register,
-  } = useForm<AddDeckFormValues>({
-    resolver: zodResolver(addDeckSchema),
+  } = useForm<CreateOrUpdateDeckFormValues>({
+    resolver: zodResolver(createOrUpdateDeckSchema),
   })
 
   const {
     field: { onChange, value },
   } = useController({
     control,
-    defaultValue: false,
+    defaultValue: defaultValues?.isPrivate,
     name: 'isPrivate',
   })
 
   return (
     <FormContainer>
       <form onSubmit={handleSubmit(onValueSubmit)} {...rest}>
-        <TextField label={'Name Pack'} {...register('name')} errorText={errors.name?.message} />
+        <TextField
+          label={'Name Pack'}
+          {...register('name')}
+          defaultValue={defaultValues?.name}
+          errorText={errors.name?.message}
+        />
         <Button fullWidth icon={<ImageOutlinedIcon size={16} />} variant={'secondary'}>
           Upload Image
         </Button>
@@ -52,7 +59,7 @@ export const AddDeckForm = ({
             Cancel
           </Button>
           <Button type={'submit'} variant={'primary'}>
-            Add New Pack
+            {submitButtonTitle}
           </Button>
         </div>
       </form>

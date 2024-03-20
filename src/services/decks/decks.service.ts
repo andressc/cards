@@ -1,10 +1,10 @@
-import { AddDeck, Decks, DecksItem, DecksParams } from '@/pages/decks/decks.types'
+import { CreateDeck, Decks, DecksItem, DecksParams, UpdateDeck } from '@/pages/decks/decks.types'
 import { baseApi } from '@/services/baseApi'
 
 export const decksService = baseApi.injectEndpoints({
   endpoints: builder => {
     return {
-      createDeck: builder.mutation<DecksItem, AddDeck>({
+      createDeck: builder.mutation<DecksItem, CreateDeck>({
         invalidatesTags: ['Decks'],
         query: params => ({
           body: params,
@@ -26,8 +26,21 @@ export const decksService = baseApi.injectEndpoints({
           url: `v1/decks`,
         }),
       }),
+      updateDeck: builder.mutation<DecksItem, UpdateDeck>({
+        invalidatesTags: ['Decks'],
+        query: ({ id, ...params }) => ({
+          body: params,
+          method: 'PATCH',
+          url: `v1/decks/${id}`,
+        }),
+      }),
     }
   },
 })
 
-export const { useCreateDeckMutation, useDeleteDeckMutation, useGetDecksQuery } = decksService
+export const {
+  useCreateDeckMutation,
+  useDeleteDeckMutation,
+  useGetDecksQuery,
+  useUpdateDeckMutation,
+} = decksService

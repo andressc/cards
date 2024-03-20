@@ -45,8 +45,15 @@ export type DecksParams = {
     | null
 }
 
-export type AddDeck = {
+export type CreateDeck = {
   cover?: string
   isPrivate: boolean
   name: string
+}
+
+export type UpdateDeck = {
+  cover?: string
+  id: string
+  isPrivate?: boolean
+  name?: string
 }
