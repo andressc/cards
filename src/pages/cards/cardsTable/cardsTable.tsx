@@ -1,20 +1,17 @@
-import { Link } from 'react-router-dom'
-
 import EditOutlinedIcon from '@/assets/icons/components/EditOutlinedIcon'
-import PlayCircleOutlinedIcon from '@/assets/icons/components/PlayCircleOutlinedIcon'
 import TrashOutlinedIcon from '@/assets/icons/components/TrashOutlinedIcon'
 import { Button } from '@/components/ui/button'
 import { Pack } from '@/components/ui/pack'
+import { Rating } from '@/components/ui/rating'
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@/components/ui/table'
-import { DeckItem } from '@/pages/decks/decks.types'
-import { pathRoutes } from '@/router'
+import { CardItem } from '@/pages/cards/cards.types'
 
 type Props = {
-  decks?: DeckItem[]
+  cards?: CardItem[]
   onDeleteClick?: (id: string) => void
   onEditClick?: (id: string) => void
 }
-export const DecksTable = ({ decks, onDeleteClick, onEditClick }: Props) => {
+export const CardsTable = ({ cards, onDeleteClick, onEditClick }: Props) => {
   const deleteDeckHandler = (id: string) => onDeleteClick?.(id)
   const editDeckHandler = (id: string) => onEditClick?.(id)
 
@@ -22,35 +19,36 @@ export const DecksTable = ({ decks, onDeleteClick, onEditClick }: Props) => {
     <Table>
       <TableHead>
         <TableRow>
-          <TableCell>Name</TableCell>
-          <TableCell>Cards</TableCell>
+          <TableCell>Question</TableCell>
+          <TableCell>Answer</TableCell>
           <TableCell>Last Updated</TableCell>
-          <TableCell>Created by</TableCell>
+          <TableCell>Grade</TableCell>
           <TableCell></TableCell>
         </TableRow>
       </TableHead>
       <TableBody>
-        {decks?.map(deck => (
-          <TableRow key={deck.id}>
+        {cards?.map(card => (
+          <TableRow key={card.id}>
             <TableCell>
-              <Pack image={deck.cover}>
-                <Link to={`${pathRoutes.decks}${deck.id}`}>{deck.name}</Link>
-              </Pack>
+              <Pack image={card.questionImg}>{card.question}</Pack>
             </TableCell>
-            <TableCell>{deck.cardsCount}</TableCell>
-            <TableCell>{deck.updated}</TableCell>
-            <TableCell>{deck.author.name}</TableCell>
+            <TableCell>
+              <Pack image={card.answerImg}>{card.answer}</Pack>
+            </TableCell>
+            <TableCell>{card.updated}</TableCell>
+            <TableCell>
+              <Rating setRating={() => {}} value={card.grade} />
+            </TableCell>
             <TableCell>
               <div className={'tableActions'}>
-                <Button icon={<PlayCircleOutlinedIcon size={16} />} variant={'icon'} />
                 <Button
                   icon={<EditOutlinedIcon size={16} />}
-                  onClick={() => editDeckHandler(deck.id)}
+                  onClick={() => editDeckHandler(card.id)}
                   variant={'icon'}
                 />
                 <Button
                   icon={<TrashOutlinedIcon size={16} />}
-                  onClick={() => deleteDeckHandler(deck.id)}
+                  onClick={() => deleteDeckHandler(card.id)}
                   variant={'icon'}
                 />
               </div>

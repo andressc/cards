@@ -11,11 +11,13 @@ import { CreateNewPassword } from '@/pages/auth/createNewPassword'
 import { ForgotPassword } from '@/pages/auth/forgotPassword'
 import { SignIn } from '@/pages/auth/signIn'
 import { SignUp } from '@/pages/auth/signUp'
+import { CardsPage } from '@/pages/cards/cardsPage/cardsPage'
 import { DecksPage } from '@/pages/decks/decksPage/decksPage'
 
 export const pathRoutes = {
   checkEmail: '/check-email',
   createNewPassword: '/create-new-password',
+  decks: '/decks/',
   forgotPassword: '/forgot-password',
   home: '/',
   login: '/login',
@@ -49,6 +51,10 @@ const privateRoutes: RouteObject[] = [
   {
     element: <DecksPage />,
     path: pathRoutes.home,
+  },
+  {
+    element: <CardsPage />,
+    path: `${pathRoutes.decks}:deckId`,
   },
 ]
 

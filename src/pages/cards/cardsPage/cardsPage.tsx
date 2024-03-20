@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
-import TrashOutlinedIcon from '@/assets/icons/components/TrashOutlinedIcon'
 import {
   CreateOrUpdateDeckForm,
   CreateOrUpdateDeckFormValues,
@@ -8,58 +8,49 @@ import {
 import { Button } from '@/components/ui/button'
 import { Modal } from '@/components/ui/modal/modal'
 import { Pagination } from '@/components/ui/pagination'
-import { Slider } from '@/components/ui/slider'
-import { Tabs } from '@/components/ui/tabs'
 import { TextField } from '@/components/ui/textField'
 import { Typography } from '@/components/ui/typography'
-import { DecksTable } from '@/pages/decks/decksTable/decksTable'
+import { CardsTable } from '@/pages/cards/cardsTable/cardsTable'
+import { useGetCardsQuery } from '@/services/cards/cards.service'
 import {
   useCreateDeckMutation,
   useDeleteDeckMutation,
-  useGetDecksQuery,
+  useGetDeckByIdQuery,
   useUpdateDeckMutation,
 } from '@/services/decks/decks.service'
 
-import s from './decksPage.module.scss'
+import s from './cardsPage.module.scss'
 
-export const DecksPage = () => {
-  const defaultSliderValue = [0, 20]
+export const CardsPage = () => {
   const defaultSearchValue = ''
-  const defaultTabsValue = ''
-
-  const tabs = [
-    {
-      title: 'My Cards',
-      value: 'ca8815d7-72ec-4e7b-8df7-e5a253e2d17b',
-    },
-    {
-      title: 'All Cards',
-      value: '',
-    },
-  ]
 
   const [currentPage, setCurrentPage] = useState(1)
   const [perPage, setPerPage] = useState(10)
-  const [sliderValue, setSliderValue] = useState(defaultSliderValue)
-  const [tabsValue, setTabsValue] = useState(defaultTabsValue)
   const [searchValue, setSearchValue] = useState(defaultSearchValue)
   const [isOpenCreateDeck, setIsOpenCreateDeck] = useState(false)
   const [isOpenUpdateDeck, setIsOpenUpdateDeck] = useState(false)
   const [updateDeckId, setUpdateDeckId] = useState('')
 
-  const clearFilter = () => {
-    setSearchValue(defaultSearchValue)
-    setSliderValue(defaultSliderValue)
-    setTabsValue(defaultTabsValue)
-  }
+  const params = useParams<{ deckId: string }>()
 
-  const { data, error, isError, isLoading } = useGetDecksQuery({
-    authorId: tabsValue,
+  const {
+    data: deckData,
+    error: deckError,
+    isError: deckIsError,
+    isLoading: deckIsLoading,
+  } = useGetDeckByIdQuery({
+    id: params.deckId ? params.deckId : 'd2a187d3-9dd0-4d68-999f-c19e0944fee1',
+  })
+
+  const {
+    data: cardData,
+    error: cardError,
+    isError: cardIsError,
+    isLoading: cardIsLoading,
+  } = useGetCardsQuery({
     currentPage,
+    deckId: params.deckId ? params.deckId : 'd2a187d3-9dd0-4d68-999f-c19e0944fee1',
     itemsPerPage: perPage,
-    maxCardsCount: sliderValue[1],
-    minCardsCount: sliderValue[0],
-    name: searchValue,
   })
 
   const [createDeck] = useCreateDeckMutation()
@@ -98,12 +89,6 @@ export const DecksPage = () => {
     setIsOpenUpdateDeck(true)
   }
 
-  const setSliderValueHandler = (newValue: number[]) => {
-    setSliderValue(newValue)
-  }
-
-  const setTabsValueHandler = (value: string) => setTabsValue(value)
-
   const setPerPageHandler = (itemPerPage: number | string) => setPerPage(+itemPerPage)
 
   const deleteDeckHandler = (id: string) => deleteDeck({ id })
@@ -118,7 +103,7 @@ export const DecksPage = () => {
     </Modal>
   )
 
-  const updateDeckModal = (
+  /*const updateDeckModal = (
     <Modal onClose={closeModalsHandler} open={isOpenUpdateDeck} title={'Update Deck'}>
       <CreateOrUpdateDeckForm
         defaultValues={data?.items.find(item => item.id === updateDeckId)}
@@ -127,14 +112,19 @@ export const DecksPage = () => {
         submitButtonTitle={'Update Pack'}
       />
     </Modal>
-  )
+  )*/
 
-  if (isLoading) {
+  if (deckIsLoading || cardIsLoading) {
     return <div>Loading</div>
   }
 
-  if (isError) {
-    return <div>{JSON.stringify(error)}</div>
+  if (deckIsError || cardIsError) {
+    return (
+      <div>
+        {JSON.stringify(deckError)}
+        {JSON.stringify(cardError)}
+      </div>
+    )
   }
 
   return (
@@ -142,58 +132,40 @@ export const DecksPage = () => {
       style={{
         display: 'flex',
         flexDirection: 'column',
+        gap: '24px',
         width: '1000px',
       }}
     >
       {createDeckModal}
-      {updateDeckModal}
+      {/*{updateDeckModal}*/}
       <div className={s.controlsContainer}>
-        <Typography variant={'h1'}>Decks list</Typography>
+        <div>
+          <Typography variant={'h1'}>{deckData?.name}</Typography>
+          <img alt={'image'} src={deckData?.cover} style={{ width: '100px' }} />
+        </div>
         <Button onClick={openModalCreateDeckHandler}>Add new deck</Button>
       </div>
-      <div className={s.container}>
-        <div className={s.controlsContainer}>
-          <TextField
-            onChange={searchHandler}
-            onClearClick={clearSearchHandler}
-            search
-            value={searchValue}
-          />
-          <Tabs
-            label={'Show decks cards'}
-            onValueChange={setTabsValueHandler}
-            tabs={tabs}
-            value={tabsValue}
-          ></Tabs>
-          <Slider
-            label={'Number of cards'}
-            onValueChange={setSliderValueHandler}
-            value={sliderValue}
-          />
-          <Button
-            icon={<TrashOutlinedIcon size={16} />}
-            onClick={clearFilter}
-            variant={'secondary'}
-          >
-            Clear Filter
-          </Button>
-        </div>
-        <div className={s.deckContainer}>
-          <DecksTable
-            decks={data?.items}
-            onDeleteClick={deleteDeckHandler}
-            onEditClick={openModalUpdateDeckHandler}
-          />
-          <Pagination
-            count={data?.pagination ? data.pagination.totalPages : 1}
-            onChange={setCurrentPage}
-            onPerPageChange={setPerPageHandler}
-            page={currentPage}
-            perPage={data?.pagination ? data?.pagination.itemsPerPage : 1}
-            perPageOptions={[10, 20, 30, 50, 100]}
-          />
-        </div>
-      </div>
+
+      <TextField
+        onChange={searchHandler}
+        onClearClick={clearSearchHandler}
+        search
+        value={searchValue}
+      />
+
+      <CardsTable
+        cards={cardData?.items}
+        onDeleteClick={deleteDeckHandler}
+        onEditClick={openModalUpdateDeckHandler}
+      />
+      <Pagination
+        count={cardData?.pagination ? cardData.pagination.totalPages : 1}
+        onChange={setCurrentPage}
+        onPerPageChange={setPerPageHandler}
+        page={currentPage}
+        perPage={cardData?.pagination ? cardData?.pagination.itemsPerPage : 1}
+        perPageOptions={[10, 20, 30, 50, 100]}
+      />
     </div>
   )
 }

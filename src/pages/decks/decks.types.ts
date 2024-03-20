@@ -1,13 +1,9 @@
-export type Decks = {
-  items: DecksItem[]
-  pagination: DecksPagination
-}
-export type DecksItemsAuthor = {
+export type DeckItemAuthor = {
   id: string
   name: string
 }
-export type DecksItem = {
-  author: DecksItemsAuthor
+export type DeckItem = {
+  author: DeckItemAuthor
   cardsCount: number
   cover: string
   created: string
@@ -16,12 +12,6 @@ export type DecksItem = {
   name: string
   updated: string
   userId: string
-}
-export type DecksPagination = {
-  currentPage: number
-  itemsPerPage: number
-  totalItems: number
-  totalPages: number
 }
 
 export type DecksParams = {
