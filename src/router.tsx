@@ -58,12 +58,20 @@ const privateRoutes: RouteObject[] = [
   },
 ]
 
-const router = createBrowserRouter([
+export const router = createBrowserRouter([
   {
-    children: privateRoutes,
-    element: <PrivateRoutes />,
+    children: [
+      {
+        children: privateRoutes,
+        element: <PrivateRoutes />,
+      },
+      {
+        children: publicRoutes,
+        element: <PublicRoutes />,
+      },
+    ],
+    element: <div>1234543234</div>,
   },
-  ...publicRoutes,
 ])
 
 export const Router = () => {
@@ -74,4 +82,10 @@ function PrivateRoutes() {
   const isAuthenticated = true
 
   return isAuthenticated ? <Outlet /> : <Navigate to={'/login'} />
+}
+
+function PublicRoutes() {
+  const isAuthenticated = true
+
+  return isAuthenticated ? <Navigate to={'/'} /> : <Outlet />
 }

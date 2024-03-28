@@ -143,29 +143,52 @@ export const CardsPage = () => {
           <Typography variant={'h1'}>{deckData?.name}</Typography>
           <img alt={'image'} src={deckData?.cover} style={{ width: '100px' }} />
         </div>
-        <Button onClick={openModalCreateDeckHandler}>Add new deck</Button>
+        {cardData?.items && cardData?.items.length ? (
+          <Button onClick={openModalCreateDeckHandler}>Add new card</Button>
+        ) : (
+          ''
+        )}
       </div>
 
-      <TextField
-        onChange={searchHandler}
-        onClearClick={clearSearchHandler}
-        search
-        value={searchValue}
-      />
+      {cardData?.items && cardData?.items.length > 0 ? (
+        <>
+          <TextField
+            onChange={searchHandler}
+            onClearClick={clearSearchHandler}
+            search
+            value={searchValue}
+          />
 
-      <CardsTable
-        cards={cardData?.items}
-        onDeleteClick={deleteDeckHandler}
-        onEditClick={openModalUpdateDeckHandler}
-      />
-      <Pagination
-        count={cardData?.pagination ? cardData.pagination.totalPages : 1}
-        onChange={setCurrentPage}
-        onPerPageChange={setPerPageHandler}
-        page={currentPage}
-        perPage={cardData?.pagination ? cardData?.pagination.itemsPerPage : 1}
-        perPageOptions={[10, 20, 30, 50, 100]}
-      />
+          <CardsTable
+            cards={cardData?.items}
+            onDeleteClick={deleteDeckHandler}
+            onEditClick={openModalUpdateDeckHandler}
+          />
+          <Pagination
+            count={cardData?.pagination ? cardData.pagination.totalPages : 1}
+            onChange={setCurrentPage}
+            onPerPageChange={setPerPageHandler}
+            page={currentPage}
+            perPage={cardData?.pagination ? cardData?.pagination.itemsPerPage : 1}
+            perPageOptions={[10, 20, 30, 50, 100]}
+          />
+        </>
+      ) : (
+        <div
+          style={{
+            alignItems: 'center',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '37px',
+            justifyContent: 'center',
+          }}
+        >
+          <Typography color={'secondary'} variant={'body1'}>
+            This pack is empty. Click add new card to fill this pack
+          </Typography>
+          <Button onClick={openModalCreateDeckHandler}>Add new card</Button>
+        </div>
+      )}
     </div>
   )
 }
